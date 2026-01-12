@@ -1,0 +1,26 @@
+import { SignUp } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
+import { AuthLayout } from "../../layouts/AuthLayout";
+
+export const SignUpPage = () => {
+  return (
+    <AuthLayout
+      title="Create your account"
+      subtitle="Get started with HelpDesk Pro today"
+    >
+      <div className="space-y-6">
+        <SignUp />
+
+        <p className="text-center text-sm text-surface-600">
+          Already have an account?{" "}
+          <Link
+            to="/sign-in"
+            className="font-medium text-primary-600 hover:text-primary-500 transition-colors"
+          >
+            Sign in here
+          </Link>
+        </p>
+      </div>
+    </AuthLayout>
+  );
+};
