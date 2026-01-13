@@ -26,13 +26,12 @@ export const Button = forwardRef(function Button(
     className = "",
     disabled = false,
     loading = false,
-    as: Component = "button",
     ...props
   },
   ref
 ) {
   return (
-    <Component
+    <button
       ref={ref}
       disabled={disabled || loading}
       className={`
@@ -48,7 +47,7 @@ export const Button = forwardRef(function Button(
     >
       {loading && (
         <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4"
+          className="animate-spin -ml-1 mr-2 size-4"
           fill="none"
           viewBox="0 0 24 24"
         >
@@ -68,6 +67,6 @@ export const Button = forwardRef(function Button(
         </svg>
       )}
       {children}
-    </Component>
+    </button>
   );
 });
