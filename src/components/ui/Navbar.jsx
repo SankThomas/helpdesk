@@ -5,10 +5,12 @@ import { SearchBar } from "./SearchBar";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SignOutButton } from "@clerk/clerk-react";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 export const Navbar = ({ onMenuClick, user }) => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const dropdownRef = useRef(null);
+  const { isAdmin } = useCurrentUser();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -64,14 +66,18 @@ export const Navbar = ({ onMenuClick, user }) => {
                   </small>
                 </div>
 
-                <div className="border-surface-300 border-y py-4">
-                  {/* Add handleNavigate to close dropdown */}
-                  <Link to="/settings" className="flex items-center gap-2">
-                    <Cog className="size-4" /> Settings
-                  </Link>
-                </div>
+                {isAdmin && (
+                  <div className="border-surface-300 border-y py-4">
+                    {/* Add handleNavigate to close dropdown */}
+                    <Link to="/settings" className="flex items-center gap-2">
+                      <Cog className="size-4" /> Settings
+                    </Link>
+                  </div>
+                )}
 
-                <div className="border-surface-300 py-4">
+                <div
+                  className={`border-surface-300 py-4 ${!isAdmin && "border-t"}`}
+                >
                   <SignOutButton>
                     <div className="flex cursor-pointer items-center gap-2">
                       <LogOut className="size-4" />
