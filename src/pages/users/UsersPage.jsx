@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Card, CardHeader, CardContent } from "../../components/ui/Card";
 import { Button } from "../../components/ui/Button";
@@ -19,9 +19,16 @@ const roleColors = {
 export const UsersPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
+  const [showUsersModal, setShowUsersModal] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    role: "user",
+  });
+  const [loading, setLoading] = useState(false);
 
   const users = useQuery(api.users.getAllUsers);
   const updateUserRole = useMutation(api.users.updateUserRole);
+  const inviteUser = useAction(api.users.inviteUser);
 
   const handleRoleChange = async (userId, newRole) => {
     try {
@@ -48,6 +55,25 @@ export const UsersPage = () => {
     admins: users?.filter((u) => u.role === "admin").length || 0,
     agents: users?.filter((u) => u.role === "agent").length || 0,
     users: users?.filter((u) => u.role === "user").length || 0,
+  };
+
+  const handleInviteUser = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await inviteUser({ email: formData.email, role: formData.role });
+
+      setShowUsersModal(false);
+      setFormData({
+        email: "",
+        role: "user",
+      });
+    } catch (error) {
+      console.error("Invite not sent: ", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -161,7 +187,11 @@ export const UsersPage = () => {
             <h2 className="text-surface-900 text-lg font-semibold">
               Users ({filteredUsers.length})
             </h2>
-            <Button variant="outline" size="md">
+            <Button
+              variant="outline"
+              size="md"
+              onClick={() => setShowUsersModal(true)}
+            >
               <Plus className="mr-2 size-4" /> Add User
             </Button>
           </div>
@@ -254,9 +284,57 @@ export const UsersPage = () => {
         </CardContent>
       </Card>
 
-      <Modal>
-        <h2>Open modal</h2>
-      </Modal>
+      {showUsersModal && (
+        <Modal
+          isOpen={true}
+          onClose={() => setShowUsersModal(false)}
+          title="Invite User"
+          size="md"
+        >
+          <form onSubmit={handleInviteUser} className="space-y-4">
+            <Input
+              label="Email"
+              type="email"
+              placeholder="example@email.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  email: e.target.value,
+                }))
+              }
+              required
+            />
+
+            <Select
+              value={formData.role}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  role: e.target.value,
+                }))
+              }
+            >
+              <option value="user">User</option>
+              <option value="agent">Agent</option>
+              <option value="admin">Admin</option>
+            </Select>
+
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowUsersModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={loading}>
+                Invite
+              </Button>
+            </div>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 };
