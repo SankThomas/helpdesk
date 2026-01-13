@@ -6,6 +6,7 @@ import { Button } from "../ui/Button";
 import { Textarea } from "../ui/Textarea";
 import { Badge } from "../ui/Badge";
 import { MessageCircle, Send, Lock, User, Clock } from "lucide-react";
+import { format } from "date-fns";
 
 export const CommentSection = ({ ticketId, currentUser }) => {
   const [comment, setComment] = useState("");
@@ -50,7 +51,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
     <Card>
       <CardHeader>
         <div className="flex items-center space-x-2">
-          <MessageCircle className="w-5 h-5 text-surface-600" />
+          <MessageCircle className="size-5 text-surface-600" />
           <h3 className="font-semibold text-surface-900">Comments</h3>
           {comments && (
             <Badge variant="secondary" size="sm">
@@ -64,11 +65,11 @@ export const CommentSection = ({ ticketId, currentUser }) => {
           {/* Comments List */}
           {!comments ? (
             <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"></div>
+              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600"></div>
             </div>
           ) : comments.length === 0 ? (
             <div className="text-center py-8">
-              <MessageCircle className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+              <MessageCircle className="size-12 text-surface-400 mx-auto mb-3" />
               <p className="text-surface-500">No comments yet</p>
             </div>
           ) : (
@@ -82,8 +83,8 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                       : "bg-surface-50 border-surface-200"
                   }`}
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center space-x-2">
+                  <div className="flex flex-wrap gap-2 items-start justify-between mb-3">
+                    <div className="flex flex-wrap gap-2 items-center">
                       <div className="flex items-center space-x-1">
                         <User className="size-4 text-surface-500" />
                         <span className="font-medium text-surface-900">
@@ -108,16 +109,14 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                           size="sm"
                           className="flex items-center space-x-1"
                         >
-                          <Lock className="w-3 h-3" />
+                          <Lock className="size-3" />
                           <span>Internal</span>
                         </Badge>
                       )}
                     </div>
                     <div className="flex items-center space-x-1 text-sm text-surface-500">
-                      <Clock className="w-3 h-3" />
-                      <span>
-                        {new Date(comment.createdAt).toLocaleString()}
-                      </span>
+                      <Clock className="size-3" />
+                      <span>{format(new Date(comment.createdAt), "PPp")}</span>
                     </div>
                   </div>
                   <div className="prose max-w-none">

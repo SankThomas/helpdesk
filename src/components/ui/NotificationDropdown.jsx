@@ -64,12 +64,12 @@ export const NotificationDropdown = ({ user }) => {
       case "ticket_created":
       case "ticket_assigned":
       case "ticket_status_changed":
-        return <Ticket className="w-4 h-4" />;
+        return <Ticket className="size-4" />;
       case "comment_added":
       case "internal_note_added":
-        return <User className="w-4 h-4" />;
+        return <User className="size-4" />;
       default:
-        return <Bell className="w-4 h-4" />;
+        return <Bell className="size-4" />;
     }
   };
 
@@ -94,12 +94,12 @@ export const NotificationDropdown = ({ user }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="relative"
       >
-        <Bell className="w-5 h-5" />
+        <Bell className="size-5" />
         {unreadCount > 0 && (
           <div className="absolute -top-1 -right-1">
-            <span className="flex h-5 w-5">
+            <span className="flex size-5">
               <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-error-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-5 w-5 bg-error-500 text-white text-xs items-center justify-center font-medium">
+              <span className="relative inline-flex rounded-full size-5 bg-error-500 text-white text-xs items-center justify-center font-medium">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             </span>
@@ -108,7 +108,7 @@ export const NotificationDropdown = ({ user }) => {
       </Button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-96 glass rounded-xl shadow-xl border z-50 animate-bounce-in">
+        <div className="absolute -right-40! mt-2 w-96 glass bg-white! rounded-xl shadow-xl border border-surface-200! z-50 animate-bounce-in">
           <div className="p-4 border-b border-surface-200">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-surface-900">Notifications</h3>
@@ -120,7 +120,7 @@ export const NotificationDropdown = ({ user }) => {
                     onClick={handleMarkAllRead}
                     className="text-xs"
                   >
-                    <Check className="w-3 h-3 mr-1" />
+                    <Check className="size-3 mr-1" />
                     Mark all read
                   </Button>
                 )}
@@ -129,7 +129,7 @@ export const NotificationDropdown = ({ user }) => {
                   size="sm"
                   onClick={() => setIsOpen(false)}
                 >
-                  <X className="w-4 h-4" />
+                  <X className="size-4" />
                 </Button>
               </div>
             </div>
@@ -138,7 +138,7 @@ export const NotificationDropdown = ({ user }) => {
           <div className="max-h-96 overflow-y-auto">
             {!notifications || notifications.length === 0 ? (
               <div className="p-8 text-center">
-                <Bell className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+                <Bell className="size-12 text-surface-400 mx-auto mb-3" />
                 <p className="text-surface-500">No notifications</p>
               </div>
             ) : (
@@ -153,7 +153,7 @@ export const NotificationDropdown = ({ user }) => {
                   >
                     <div className="flex items-start space-x-3">
                       <div
-                        className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+                        className={`shrink-0 size-8 rounded-full flex items-center justify-center ${
                           !notification.read
                             ? "bg-primary-100 text-primary-600"
                             : "bg-surface-100 text-surface-600"
@@ -179,7 +179,7 @@ export const NotificationDropdown = ({ user }) => {
                             </p>
                             <div className="flex items-center space-x-2 mt-2">
                               <div className="flex items-center space-x-1 text-xs text-surface-500">
-                                <Clock className="w-3 h-3" />
+                                <Clock className="size-3" />
                                 <span>
                                   {formatTimeAgo(notification.createdAt)}
                                 </span>
@@ -200,7 +200,7 @@ export const NotificationDropdown = ({ user }) => {
                             }
                             className="opacity-0 group-hover:opacity-100 transition-opacity"
                           >
-                            <Trash2 className="w-3 h-3" />
+                            <Trash2 className="size-3" />
                           </Button>
                         </div>
                       </div>

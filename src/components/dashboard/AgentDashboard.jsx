@@ -56,7 +56,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Ticket className="w-8 h-8 text-primary-600" />
+              <Ticket className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Total Tickets
@@ -72,7 +72,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <User className="w-8 h-8 text-success-600" />
+              <User className="size-8 text-success-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Assigned to Me
@@ -88,7 +88,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="w-8 h-8 text-warning-600" />
+              <Clock className="size-8 text-warning-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Unassigned
@@ -104,7 +104,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <AlertTriangle className="w-8 h-8 text-error-600" />
+              <AlertTriangle className="size-8 text-error-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">Urgent</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -120,24 +120,21 @@ export const AgentDashboard = ({ user }) => {
         {/* Unassigned Tickets */}
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap gap-2 items-center justify-between">
               <h2 className="text-lg font-semibold text-surface-900">
                 Unassigned Tickets
               </h2>
-              <Button
-                as={Link}
-                to="/tickets?filter=unassigned"
-                variant="outline"
-                size="sm"
-              >
-                View All
-              </Button>
+              <Link to="/tickets?filter=unassigned">
+                <Button variant="outline" size="sm">
+                  View All
+                </Button>
+              </Link>
             </div>
           </CardHeader>
           <CardContent>
             {unassignedTickets.length === 0 ? (
               <div className="text-center py-8">
-                <Ticket className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+                <Ticket className="size-12 text-surface-400 mx-auto mb-3" />
                 <p className="text-surface-500">No unassigned tickets</p>
               </div>
             ) : (
@@ -145,11 +142,11 @@ export const AgentDashboard = ({ user }) => {
                 {unassignedTickets.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className="flex items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                    className="flex flex-wrap gap-2 items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
                   >
-                    <div className="flex-1 min-w-0">
+                    <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="font-medium text-surface-900 truncate mb-1">
+                        <h3 className="font-medium text-surface-900 mb-1 line-clamp-2">
                           {ticket.title}
                         </h3>
                         <p className="line-clamp-2 text-surface-500 mb-2">
@@ -160,7 +157,7 @@ export const AgentDashboard = ({ user }) => {
                         </p>
                       </Link>
                     </div>
-                    <div className="flex items-center space-x-2 ml-4">
+                    <div className="flex items-center gap-2">
                       <Badge
                         variant={priorityColors[ticket.priority]}
                         size="sm"
@@ -182,20 +179,18 @@ export const AgentDashboard = ({ user }) => {
               <h2 className="text-lg font-semibold text-surface-900">
                 My Tickets
               </h2>
-              <Button
-                as={Link}
-                to="/tickets?filter=assigned"
-                variant="outline"
-                size="sm"
-              >
-                View All
-              </Button>
+
+              <Link to="/tickets?filter=assigned">
+                <Button variant="outline" size="sm">
+                  View All
+                </Button>
+              </Link>
             </div>
           </CardHeader>
           <CardContent>
             {(myTickets?.length || 0) === 0 ? (
               <div className="text-center py-8">
-                <User className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+                <User className="size-12 text-surface-400 mx-auto mb-3" />
                 <p className="text-surface-500">No assigned tickets</p>
               </div>
             ) : (
@@ -203,11 +198,11 @@ export const AgentDashboard = ({ user }) => {
                 {myTickets?.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className="flex items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                    className="flex flex-wrap gap-2 items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
                   >
-                    <div className="flex-1 min-w-0">
+                    <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="font-medium text-surface-900 truncate mb-1">
+                        <h3 className="font-medium text-surface-900 mb-1 line-clamp-2">
                           {ticket.title}
                         </h3>
                         <p className="line-clamp-2 text-surface-500 mb-2">
@@ -218,7 +213,7 @@ export const AgentDashboard = ({ user }) => {
                         </p>
                       </Link>
                     </div>
-                    <div className="flex items-center space-x-2 ml-4">
+                    <div className="flex items-center space-x-2">
                       <Badge variant={statusColors[ticket.status]} size="sm">
                         {ticket.status}
                       </Badge>

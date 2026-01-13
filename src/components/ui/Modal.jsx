@@ -60,7 +60,7 @@ export const Modal = ({ isOpen, onClose, title, children, size = "md" }) => {
           <div className="flex items-center justify-between p-6 border-b border-surface-200">
             <h2 className="text-lg font-semibold text-surface-900">{title}</h2>
             <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-5 h-5" />
+              <X className="size-5" />
             </Button>
           </div>
 

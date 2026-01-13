@@ -5,6 +5,7 @@ import { Card, CardHeader, CardContent } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import { Plus, Ticket, Clock, CheckCircle } from "lucide-react";
+import { format } from "date-fns";
 
 const statusColors = {
   open: "error",
@@ -37,7 +38,7 @@ export const UserDashboard = ({ user }) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap gap-2 items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-surface-900">
             Your Dashboard
@@ -45,14 +46,12 @@ export const UserDashboard = ({ user }) => {
           <p className="text-surface-600">Manage your support tickets</p>
         </div>
 
-        <Button
-          as={Link}
-          to="/tickets/new"
-          className="flex items-center space-x-2"
-        >
-          <Plus className="w-4 h-4" />
-          <span>New Ticket</span>
-        </Button>
+        <Link to="/tickets/new">
+          <Button className="flex items-center space-x-2">
+            <Plus className="size-4" />
+            <span>New Ticket</span>
+          </Button>
+        </Link>
       </div>
 
       {/* Stats */}
@@ -60,7 +59,7 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Ticket className="w-8 h-8 text-primary-600" />
+              <Ticket className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Total Tickets
@@ -76,7 +75,7 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="w-8 h-8 text-error-600" />
+              <Clock className="size-8 text-error-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">Open</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -90,7 +89,7 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="w-8 h-8 text-warning-600" />
+              <Clock className="size-8 text-warning-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">Pending</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -104,7 +103,7 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <CheckCircle className="w-8 h-8 text-success-600" />
+              <CheckCircle className="size-8 text-success-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">Resolved</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -123,31 +122,33 @@ export const UserDashboard = ({ user }) => {
             <h2 className="text-lg font-semibold text-surface-900">
               Recent Tickets
             </h2>
-            <Button as={Link} to="/tickets" variant="outline" size="sm">
-              View All
-            </Button>
+            <Link to="/tickets">
+              <Button variant="outline" size="sm">
+                View All
+              </Button>
+            </Link>
           </div>
         </CardHeader>
 
         <CardContent>
           {recentTickets.length === 0 ? (
             <div className="text-center py-8">
-              <Ticket className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+              <Ticket className="size-12 text-surface-400 mx-auto mb-3" />
               <p className="text-surface-500 mb-4">No tickets yet</p>
-              <Button as={Link} to="/tickets/new">
-                Create your first ticket
-              </Button>
+              <Link to="/tickets/new">
+                <Button>Create your first ticket</Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
               {recentTickets.slice(0, 4).map((ticket) => (
                 <div
                   key={ticket._id}
-                  className="flex items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                  className="flex flex-wrap gap-2 p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
                 >
-                  <div className="flex-1 min-w-0">
+                  <div>
                     <Link to={`/tickets/${ticket._id}`} className="block">
-                      <h3 className="font-medium text-surface-900 truncate mb-2">
+                      <h3 className="font-medium text-surface-900 mb-2">
                         {ticket.title}
                       </h3>
                       <p className="text-sm text-surface-500 line-clamp-2">
@@ -155,17 +156,15 @@ export const UserDashboard = ({ user }) => {
                       </p>
                     </Link>
 
-                    <div className="flex items-center space-x-4 text-sm text-surface-500 mt-4">
+                    <div className="flex flex-wrap gap-1 items-center space-x-4 text-sm text-surface-500 mt-4">
                       <span>By {ticket.user?.name}</span>
                       {ticket.assignedUser && (
                         <span>Assigned to {ticket.assignedUser.name}</span>
                       )}
-                      <span>
-                        {new Date(ticket.createdAt).toLocaleDateString()}
-                      </span>
+                      <span>{format(new Date(ticket.createdAt), "PPp")}</span>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2 ml-4">
+                  <div className="flex items-center gap-2">
                     <Badge variant={priorityColors[ticket.priority]} size="sm">
                       {ticket.priority}
                     </Badge>

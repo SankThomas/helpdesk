@@ -192,7 +192,7 @@ export const SettingsPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="p-4 bg-primary-50 rounded-lg">
                       <div className="flex items-center">
-                        <Users className="w-8 h-8 text-primary-600" />
+                        <Users className="size-8 text-primary-600" />
                         <div className="ml-3">
                           <p className="text-sm font-medium text-surface-600">
                             Total Users
@@ -206,7 +206,7 @@ export const SettingsPage = () => {
 
                     <div className="p-4 bg-secondary-50 rounded-lg">
                       <div className="flex items-center">
-                        <Shield className="w-8 h-8 text-secondary-600" />
+                        <Shield className="size-8 text-secondary-600" />
                         <div className="ml-3">
                           <p className="text-sm font-medium text-surface-600">
                             Agents
@@ -221,7 +221,7 @@ export const SettingsPage = () => {
 
                     <div className="p-4 bg-accent-50 rounded-lg">
                       <div className="flex items-center">
-                        <Users className="w-8 h-8 text-accent-600" />
+                        <Users className="size-8 text-accent-600" />
                         <div className="ml-3">
                           <p className="text-sm font-medium text-surface-600">
                             Admins
@@ -424,7 +424,7 @@ export const SettingsPage = () => {
                 <div className="space-y-6">
                   <div className="p-4 bg-warning-50 border border-warning-200 rounded-lg">
                     <div className="flex items-start space-x-3">
-                      <AlertTriangle className="w-5 h-5 text-warning-600 mt-0.5" />
+                      <AlertTriangle className="size-5 text-warning-600 mt-0.5" />
                       <div>
                         <h4 className="font-medium text-warning-800">
                           Security Notice

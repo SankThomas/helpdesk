@@ -137,7 +137,7 @@ export const ReportsPage = () => {
           </p>
         </div>
         <Button onClick={handleExport} className="flex items-center space-x-2">
-          <Download className="w-4 h-4" />
+          <Download className="size-4" />
           <span>Export CSV</span>
         </Button>
       </div>
@@ -168,7 +168,7 @@ export const ReportsPage = () => {
 
             <div className="flex items-end">
               <Button variant="outline" className="w-full">
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="size-4 mr-2" />
                 Custom Range
               </Button>
             </div>
@@ -181,7 +181,7 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <BarChart3 className="w-8 h-8 text-primary-600" />
+              <BarChart3 className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Total Tickets
@@ -197,7 +197,7 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Target className="w-8 h-8 text-success-600" />
+              <Target className="size-8 text-success-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Resolution Rate
@@ -213,7 +213,7 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="w-8 h-8 text-secondary-600" />
+              <Users className="size-8 text-secondary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Active Users
@@ -256,7 +256,7 @@ export const ReportsPage = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div
-                        className={`w-3 h-3 rounded-full ${colors[status]}`}
+                        className={`size-3 rounded-full ${colors[status]}`}
                       />
                       <span className="capitalize font-medium text-surface-900">
                         {status}
@@ -308,7 +308,7 @@ export const ReportsPage = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div
-                        className={`w-3 h-3 rounded-full ${colors[priority]}`}
+                        className={`size-3 rounded-full ${colors[priority]}`}
                       />
                       <span className="capitalize font-medium text-surface-900">
                         {priority}
@@ -341,7 +341,7 @@ export const ReportsPage = () => {
               Ticket Creation Trends
             </h2>
             <div className="flex items-center space-x-2">
-              <TrendingUp className="w-4 h-4 text-success-600" />
+              <TrendingUp className="size-4 text-success-600" />
               <span className="text-sm text-success-600 font-medium">
                 {dailyTickets.reduce((sum, day) => sum + day.count, 0)} tickets
                 this week

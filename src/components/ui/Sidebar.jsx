@@ -62,10 +62,10 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between h-16 px-6 border-b border-surface-200">
+          <div className="flex items-center justify-between h-16 px-2 border-b border-surface-200">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center shadow-lg">
-                <HelpingHand className="w-5 h-5 text-white" />
+              <div className="size-8 bg-primary-600 rounded-lg flex items-center justify-center shadow-lg">
+                <HelpingHand className="size-5 text-white" />
               </div>
               <span className="text-lg font-semibold text-surface-900">
                 HelpDesk
@@ -76,12 +76,12 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
               onClick={onToggle}
               className="lg:hidden p-1 rounded-md hover:bg-surface-100 transition-colors"
             >
-              <X className="w-5 h-5 text-surface-600" />
+              <X className="size-5 text-surface-600" />
             </button>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-2">
+          <nav className="flex-1 px-2 py-6 space-y-2">
             {filteredNavigation.map((item) => {
               const isActive =
                 location.pathname === item.href ||
@@ -108,7 +108,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
                   }}
                 >
                   <item.icon
-                    className={`w-5 h-5 mr-3 transition-colors ${
+                    className={`size-5 mr-3 transition-colors ${
                       isActive
                         ? "text-primary-600"
                         : "text-surface-500 group-hover:text-surface-700"

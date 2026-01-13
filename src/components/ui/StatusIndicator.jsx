@@ -2,9 +2,9 @@ import { CheckCircle, Clock, AlertTriangle, XCircle } from "lucide-react";
 
 export const StatusIndicator = ({ status, size = "md" }) => {
   const sizeClasses = {
-    sm: "w-3 h-3",
-    md: "w-4 h-4",
-    lg: "w-5 h-5",
+    sm: "size-3",
+    md: "size-4",
+    lg: "size-5",
   };
 
   const statusConfig = {

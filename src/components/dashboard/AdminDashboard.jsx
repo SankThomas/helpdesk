@@ -46,7 +46,7 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Ticket className="w-8 h-8 text-primary-600" />
+              <Ticket className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Total Tickets
@@ -62,7 +62,7 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <AlertTriangle className="w-8 h-8 text-error-600" />
+              <AlertTriangle className="size-8 text-error-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Open Tickets
@@ -78,7 +78,7 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="w-8 h-8 text-secondary-600" />
+              <Users className="size-8 text-secondary-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Total Agents
@@ -94,7 +94,7 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <TrendingUp className="w-8 h-8 text-warning-600" />
+              <TrendingUp className="size-8 text-warning-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-surface-600">
                   Unassigned
@@ -114,15 +114,17 @@ export const AdminDashboard = ({ user }) => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-surface-900">Recent Tickets</h3>
-              <Button as={Link} to="/tickets" variant="outline" size="sm">
-                View All Tickets
-              </Button>
+              <Link to="/tickets">
+                <Button variant="outline" size="sm">
+                  View All Tickets
+                </Button>
+              </Link>
             </div>
           </CardHeader>
           <CardContent>
             {recentTickets.length === 0 ? (
               <div className="text-center py-8">
-                <Ticket className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+                <Ticket className="size-12 text-surface-400 mx-auto mb-3" />
                 <p className="text-surface-500">No tickets yet</p>
               </div>
             ) : (
@@ -236,25 +238,23 @@ export const AdminDashboard = ({ user }) => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button as={Link} to="/tickets" className="justify-center">
-              View All Tickets
-            </Button>
-            <Button
-              as={Link}
-              to="/tickets?filter=unassigned"
-              variant="outline"
-              className="justify-center"
-            >
-              Unassigned Tickets
-            </Button>
-            <Button
-              as={Link}
-              to="/users"
-              variant="outline"
-              className="justify-center"
-            >
-              Manage Users
-            </Button>
+            <Link to="/tickets">
+              <Button to="/tickets" className="justify-center">
+                View All Tickets
+              </Button>
+            </Link>
+
+            <Link to="/tickets?filter=unassigned">
+              <Button variant="outline" className="justify-center">
+                Unassigned Tickets
+              </Button>
+            </Link>
+
+            <Link to="/users">
+              <Button variant="outline" className="justify-center">
+                Manage Users
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </Card>

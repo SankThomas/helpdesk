@@ -23,7 +23,7 @@ export const Navbar = ({ onMenuClick, user }) => {
 
   return (
     <header className="glass border-b border-surface-200 sticky top-0 z-40">
-      <div className="flex items-center justify-between h-16 px-6">
+      <div className="flex items-center justify-between h-16 px-2">
         <div className="flex items-center space-x-4">
           <Button
             variant="ghost"
@@ -31,11 +31,11 @@ export const Navbar = ({ onMenuClick, user }) => {
             onClick={onMenuClick}
             className="lg:hidden"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="size-5" />
           </Button>
         </div>
 
-        <div className="flex-1 max-w-md mx-8">
+        <div className="flex-1 max-w-md mx-8 hidden lg:block">
           <SearchBar currentUser={user} />
         </div>
 
@@ -47,7 +47,7 @@ export const Navbar = ({ onMenuClick, user }) => {
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => setDropdownMenu(!dropdownMenu)}
             >
-              {user?.name}{" "}
+              <small>{user?.name}</small>
               {dropdownMenu ? (
                 <ChevronUp className="size-4" />
               ) : (
@@ -56,7 +56,7 @@ export const Navbar = ({ onMenuClick, user }) => {
             </p>
 
             {dropdownMenu && (
-              <div className="absolute right-0 mt-2 w-72 rounded-xl shadow-xl glass z-50 animate-bounce-in p-4">
+              <div className="absolute right-0 mt-2 w-72 rounded-xl shadow-xl glass bg-white! z-50 animate-bounce-in p-4">
                 <div className="pb-2">
                   <h4 className="text-base!">{user?.name}</h4>
                   <small className="text-surface-500 text-sm!">
@@ -73,7 +73,7 @@ export const Navbar = ({ onMenuClick, user }) => {
 
                 <div className="border-surface-300 py-4">
                   <SignOutButton>
-                    <div className="flex items-center gap-2">
+                    <div className="cursor-pointer flex items-center gap-2">
                       <LogOut className="size-4" />
                       Log Out
                     </div>

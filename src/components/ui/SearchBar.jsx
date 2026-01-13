@@ -84,7 +84,7 @@ export const SearchBar = ({ currentUser }) => {
   return (
     <div className="relative">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 w-4 h-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 size-4" />
         <input
           ref={inputRef}
           type="text"
@@ -111,7 +111,7 @@ export const SearchBar = ({ currentUser }) => {
             }}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-surface-400 hover:text-surface-600"
           >
-            <X className="w-4 h-4" />
+            <X className="size-4" />
           </button>
         )}
       </div>
@@ -120,7 +120,7 @@ export const SearchBar = ({ currentUser }) => {
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-surface-200 z-50 max-h-96 overflow-y-auto">
           {!searchResults ? (
             <div className="p-4 text-center">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600 mx-auto"></div>
+              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600 mx-auto"></div>
             </div>
           ) : searchResults.length === 0 ? (
             <div className="p-4 text-center text-surface-500">
@@ -132,7 +132,7 @@ export const SearchBar = ({ currentUser }) => {
                 <div
                   key={ticket._id}
                   className={`
-                    px-4 py-3 cursor-pointer transition-colors
+                    px-2 py-3 cursor-pointer transition-colors
                     ${
                       index === selectedIndex
                         ? "bg-primary-50"
@@ -164,11 +164,11 @@ export const SearchBar = ({ currentUser }) => {
                       </p>
                       <div className="flex items-center space-x-3 mt-2 text-xs text-surface-500">
                         <div className="flex items-center space-x-1">
-                          <User className="w-3 h-3" />
+                          <User className="size-3" />
                           <span>{ticket.user?.name}</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <Clock className="w-3 h-3" />
+                          <Clock className="size-3" />
                           <span>
                             {new Date(ticket.createdAt).toLocaleDateString()}
                           </span>

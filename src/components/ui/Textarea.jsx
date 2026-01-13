@@ -19,7 +19,7 @@ export const Textarea = forwardRef(function Textarea(
           placeholder:text-surface-400
           focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500
           disabled:cursor-not-allowed disabled:bg-surface-50 disabled:text-surface-500
-          resize-vertical transition-all duration-200
+          resize-none lg:resize-vertical transition-all duration-200
           ${
             error
               ? "border-error-300 focus:border-error-500 focus:ring-error-500"

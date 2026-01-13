@@ -95,16 +95,16 @@ export const CreateTicketPage = () => {
     <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
       {/* Header */}
       <div className="flex items-center space-x-4">
-        <Button
-          as={Link}
-          to="/tickets"
-          variant="ghost"
-          size="sm"
-          className="flex items-center space-x-2"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Tickets</span>
-        </Button>
+        <Link to="/tickets">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center space-x-2"
+          >
+            <ArrowLeft className="size-4" />
+            <span>Back to Tickets</span>
+          </Button>
+        </Link>
       </div>
 
       <div>

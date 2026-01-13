@@ -10,9 +10,11 @@ export const ErrorPage = () => {
         Seems like you have found a page that is no longer on the website.
         Apologies. Browse our other working pages.
       </p>
-      <Button as={Link} to="/dashboard" variant="outline" size="sm">
-        &larr; Back to dashboard
-      </Button>
+      <Link to="/dashboard">
+        <Button variant="outline" size="sm">
+          &larr; Back to dashboard
+        </Button>
+      </Link>
     </div>
   );
 };
