@@ -69,10 +69,24 @@ export const FileUpload = ({
   };
 
   const getFileIcon = (file) => {
-    if (file.type.startsWith("image/")) return <Image className="size-4" />;
-    if (file.type.includes("pdf") || file.type.includes("document"))
-      return <FileText className="size-4" />;
-    return <File className="size-4" />;
+    if (file.type.startsWith("image/")) {
+      const previewUrl = URL.createObjectURL(file);
+
+      return (
+        <img
+          src={previewUrl}
+          alt={file.name}
+          className="size-9 rounded object-cover"
+          onLoad={() => URL.revokeObjectURL(previewUrl)} // cleanup because memory
+        />
+      );
+    }
+
+    if (file.type.includes("pdf") || file.type.includes("document")) {
+      return <FileText className="size-9" />;
+    }
+
+    return <File className="size-9" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -109,7 +123,7 @@ export const FileUpload = ({
         />
 
         <div className="space-y-3">
-          <Upload className="w-8 h-8 text-surface-400 mx-auto" />
+          <Upload className="size-8 text-surface-400 mx-auto" />
           <div>
             <p className="text-surface-700 font-medium">
               Drop files here or click to browse
@@ -140,7 +154,9 @@ export const FileUpload = ({
               <div className="flex items-center space-x-3">
                 {getFileIcon(file)}
                 <div>
-                  <p className="font-medium text-surface-900">{file.name}</p>
+                  <p className="font-medium text-surface-900 line-clamp-1">
+                    {file.name}
+                  </p>
                   <p className="text-sm text-surface-500">
                     {formatFileSize(file.size)}
                   </p>
