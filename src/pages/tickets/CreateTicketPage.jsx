@@ -92,7 +92,7 @@ export const CreateTicketPage = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+    <div className="animate-fade-in mx-auto max-w-4xl space-y-6">
       {/* Header */}
       <div className="flex items-center space-x-4">
         <Link to="/tickets">
@@ -108,7 +108,7 @@ export const CreateTicketPage = () => {
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold text-surface-900">
+        <h1 className="text-surface-900 text-2xl font-bold">
           Create New Ticket
         </h1>
         <p className="text-surface-600">Submit a new support request</p>
@@ -117,7 +117,7 @@ export const CreateTicketPage = () => {
       {/* Form */}
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-surface-900">
+          <h2 className="text-surface-900 text-lg font-semibold">
             Ticket Details
           </h2>
         </CardHeader>
@@ -160,7 +160,7 @@ export const CreateTicketPage = () => {
             </Select>
 
             <div>
-              <label className="block font-medium text-surface-700 mb-2">
+              <label className="text-surface-700 mb-2 block font-medium">
                 Attachments (Optional)
               </label>
               <FileUpload

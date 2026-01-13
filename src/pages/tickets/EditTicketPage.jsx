@@ -36,7 +36,7 @@ export const EditTicketPage = () => {
   const { currentUser } = useCurrentUser();
   const ticket = useQuery(
     api.tickets.getTicketById,
-    ticketId ? { ticketId } : "skip"
+    ticketId ? { ticketId } : "skip",
   );
   const existingAttachments = useQuery(api.attachments.getAttachmentByTicket, {
     ticketId,
@@ -117,18 +117,18 @@ export const EditTicketPage = () => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="size-12 object-cover rounded border border-surface-200"
+          className="border-surface-200 size-12 rounded border object-cover"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="size-4 text-error-600" />;
+      return <FileText className="text-error-600 size-4" />;
     }
 
     // Fallback for unknown types
-    return <File className="size-4 text-surface-600" />;
+    return <File className="text-surface-600 size-4" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -143,7 +143,7 @@ export const EditTicketPage = () => {
 
   return (
     <div>
-      <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+      <div className="animate-fade-in mx-auto max-w-4xl space-y-6">
         <div className="flex items-center space-x-4">
           <Link to={`/tickets/${ticketId}`}>
             <Button
@@ -158,13 +158,13 @@ export const EditTicketPage = () => {
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold text-surface-900">Edit Ticket</h1>
+          <h1 className="text-surface-900 text-2xl font-bold">Edit Ticket</h1>
           <p className="text-surface-600">Update your support request</p>
         </div>
 
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Ticket Details
             </h2>
           </CardHeader>
@@ -197,19 +197,19 @@ export const EditTicketPage = () => {
               </Select>
 
               {existingAttachments && existingAttachments.length > 0 && (
-                <div className="space-y-2 mt-4">
-                  <h3 className="font-semibold text-surface-900 flex items-center space-x-2">
-                    <Paperclip className="size-4 mr-2" /> Existing Attachments
+                <div className="mt-4 space-y-2">
+                  <h3 className="text-surface-900 flex items-center space-x-2 font-semibold">
+                    <Paperclip className="mr-2 size-4" /> Existing Attachments
                   </h3>
                   {existingAttachments.map((att) => (
                     <div
                       key={att._id}
-                      className="flex items-center justify-between p-3 border border-surface-200 rounded-lg"
+                      className="border-surface-200 flex items-center justify-between rounded-lg border p-3"
                     >
-                      <div className="flex items-center space-x-2 flex-1 min-w-0">
+                      <div className="flex min-w-0 flex-1 items-center space-x-2">
                         {getFileIcon(att)}
                         <span className="truncate">{att.fileName}</span>
-                        <span className="text-sm text-surface-500 ml-2">
+                        <span className="text-surface-500 ml-2 text-sm">
                           {formatFileSize(att.fileSize)}
                         </span>
                       </div>
@@ -246,7 +246,7 @@ export const EditTicketPage = () => {
 
               {/* Upload New Attachments */}
               <div className="mt-4">
-                <label className="block font-medium text-surface-700 mb-2">
+                <label className="text-surface-700 mb-2 block font-medium">
                   Add Attachments (Optional)
                 </label>
                 <FileUpload
@@ -288,7 +288,7 @@ export const EditTicketPage = () => {
           Are you sure you want to delete{" "}
           <strong>{attachmentToDelete?.fileName}</strong>?
         </p>
-        <div className="flex justify-end space-x-2 mt-4">
+        <div className="mt-4 flex justify-end space-x-2">
           <Button
             type="button"
             variant="outline"

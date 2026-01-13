@@ -1,7 +1,7 @@
 export const Card = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`glass rounded-xl border border-surface-200 shadow-sm hover:shadow-md transition-all duration-200 ${className}`}
+      className={`glass border-surface-200 rounded-xl border shadow-sm transition-all duration-200 hover:shadow-md ${className}`}
       {...props}
     >
       {children}
@@ -12,7 +12,7 @@ export const Card = ({ children, className = "", ...props }) => {
 export const CardHeader = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`px-6 py-4 border-b border-surface-200 ${className}`}
+      className={`border-surface-200 border-b px-6 py-4 ${className}`}
       {...props}
     >
       {children}
@@ -31,7 +31,7 @@ export const CardContent = ({ children, className = "", ...props }) => {
 export const CardFooter = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`px-6 py-4 border-t border-surface-200 bg-surface-50 ${className}`}
+      className={`border-surface-200 bg-surface-50 border-t px-6 py-4 ${className}`}
       {...props}
     >
       {children}

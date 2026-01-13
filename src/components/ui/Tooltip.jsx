@@ -29,14 +29,11 @@ export const Tooltip = ({ children, content, position = "top" }) => {
 
       {isVisible && (
         <div
-          className={`
-          absolute z-50 px-3 py-2 text-sm text-white bg-surface-800 rounded-lg shadow-lg
-          whitespace-nowrap animate-fade-in ${positionClasses[position]}
-        `}
+          className={`bg-surface-800 animate-fade-in absolute z-50 rounded-lg px-3 py-2 text-sm whitespace-nowrap text-white shadow-lg ${positionClasses[position]} `}
         >
           {content}
           <div
-            className={`absolute w-0 h-0 border-4 ${arrowClasses[position]}`}
+            className={`absolute h-0 w-0 border-4 ${arrowClasses[position]}`}
           />
         </div>
       )}

@@ -51,22 +51,22 @@ export const UsersPage = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-surface-900">User Management</h1>
+        <h1 className="text-surface-900 text-2xl font-bold">User Management</h1>
         <p className="text-surface-600">Manage user accounts and permissions</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="size-8 text-primary-600" />
+              <Users className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="font-medium text-surface-600">Total Users</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 font-medium">Total Users</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.total}
                 </p>
               </div>
@@ -77,10 +77,10 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Shield className="size-8 text-primary-600" />
+              <Shield className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="font-medium text-surface-600">Admins</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 font-medium">Admins</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.admins}
                 </p>
               </div>
@@ -91,10 +91,10 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <UserCheck className="size-8 text-secondary-600" />
+              <UserCheck className="text-secondary-600 size-8" />
               <div className="ml-4">
-                <p className="font-medium text-surface-600">Agents</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 font-medium">Agents</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.agents}
                 </p>
               </div>
@@ -105,10 +105,10 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <UserX className="size-8 text-surface-600" />
+              <UserX className="text-surface-600 size-8" />
               <div className="ml-4">
-                <p className="font-medium text-surface-600">Users</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 font-medium">Users</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.users}
                 </p>
               </div>
@@ -120,9 +120,9 @@ export const UsersPage = () => {
       {/* Filters */}
       <Card className="glass">
         <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 size-4" />
+              <Search className="text-surface-400 absolute top-1/2 left-3 size-4 -translate-y-1/2 transform" />
               <Input
                 placeholder="Search users..."
                 value={searchTerm}
@@ -158,23 +158,23 @@ export const UsersPage = () => {
       <Card className="glass">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Users ({filteredUsers.length})
             </h2>
             <Button variant="outline" size="md">
-              <Plus className="size-4 mr-2" /> Add User
+              <Plus className="mr-2 size-4" /> Add User
             </Button>
           </div>
         </CardHeader>
         <CardContent>
           {!users ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full size-8 border-b-2 border-primary-600"></div>
+              <div className="border-primary-600 size-8 animate-spin rounded-full border-b-2"></div>
             </div>
           ) : filteredUsers.length === 0 ? (
-            <div className="text-center py-12">
-              <Users className="size-12 text-surface-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-surface-900 mb-2">
+            <div className="py-12 text-center">
+              <Users className="text-surface-400 mx-auto mb-4 size-12" />
+              <h3 className="text-surface-900 mb-2 text-lg font-medium">
                 No users found
               </h3>
               <p className="text-surface-500">
@@ -185,54 +185,54 @@ export const UsersPage = () => {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-surface-200">
-                    <th className="text-left py-3 px-2 font-medium text-surface-900">
+                  <tr className="border-surface-200 border-b">
+                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
                       User
                     </th>
-                    <th className="text-left py-3 px-2 font-medium text-surface-900">
+                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
                       Email
                     </th>
-                    <th className="text-left py-3 px-2 font-medium text-surface-900">
+                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
                       Role
                     </th>
-                    <th className="text-left py-3 px-2 font-medium text-surface-900">
+                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
                       Joined
                     </th>
-                    <th className="text-left py-3 px-2 font-medium text-surface-900">
+                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-surface-200">
+                <tbody className="divide-surface-200 divide-y">
                   {filteredUsers.map((user) => (
                     <tr
                       key={user._id}
                       className="hover:bg-surface-50 transition-colors"
                     >
-                      <td className="py-4 px-2">
+                      <td className="px-2 py-4">
                         <div className="flex items-center space-x-3">
-                          <div className="size-10 bg-linear-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-medium">
+                          <div className="from-primary-500 to-primary-600 flex size-10 items-center justify-center rounded-full bg-linear-to-br font-medium text-white">
                             {user.name.charAt(0).toUpperCase()}
                           </div>
                           <div>
-                            <p className="font-medium text-surface-900 truncate">
+                            <p className="text-surface-900 truncate font-medium">
                               {user.name}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-2 text-surface-600">
+                      <td className="text-surface-600 px-2 py-4">
                         {user.email}
                       </td>
-                      <td className="py-4 px-2">
+                      <td className="px-2 py-4">
                         <Badge variant={roleColors[user.role]} size="sm">
                           {user.role}
                         </Badge>
                       </td>
-                      <td className="py-4 px-2 text-surface-600 truncate">
+                      <td className="text-surface-600 truncate px-2 py-4">
                         {format(new Date(user.createdAt), "MMM do, yyyy")}
                       </td>
-                      <td className="py-4 px-2">
+                      <td className="px-2 py-4">
                         <Select
                           value={user.role}
                           onChange={(e) =>

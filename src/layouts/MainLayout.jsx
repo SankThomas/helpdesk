@@ -8,14 +8,14 @@ export const MainLayout = ({ children }) => {
   const { currentUser } = useCurrentUser();
 
   return (
-    <div className="flex h-screen bg-surface-50">
+    <div className="bg-surface-50 flex h-screen">
       <Sidebar
         isOpen={sidebarOpen}
         onToggle={() => setSidebarOpen(!sidebarOpen)}
         userRole={currentUser?.role}
       />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex min-w-0 flex-1 flex-col">
         <Navbar
           onMenuClick={() => setSidebarOpen(!sidebarOpen)}
           user={currentUser}

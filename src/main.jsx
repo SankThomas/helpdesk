@@ -23,5 +23,5 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </ConvexProvider>
     </ClerkProvider>
-  </StrictMode>
+  </StrictMode>,
 );

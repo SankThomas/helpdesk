@@ -37,7 +37,7 @@ export const TicketDetailPage = () => {
   const { currentUser } = useCurrentUser();
   const ticket = useQuery(
     api.tickets.getTicketById,
-    ticketId ? { ticketId } : "skip"
+    ticketId ? { ticketId } : "skip",
   );
 
   // Get all agents for assignment
@@ -116,7 +116,7 @@ export const TicketDetailPage = () => {
   const canEdit = isAgentOrAdmin;
 
   return (
-    <div className="mx-auto space-y-6 animate-fade-in">
+    <div className="animate-fade-in mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center space-x-4">
         <NavLink to="/tickets">
@@ -131,18 +131,18 @@ export const TicketDetailPage = () => {
         </NavLink>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="space-y-6 lg:col-span-2">
           {/* Ticket Details */}
           <Card>
             <CardHeader>
-              <div className="flex flex-wrap gap-2 items-start justify-between">
+              <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="">
-                  <h1 className="text-2xl font-bold text-surface-900 mb-2">
+                  <h1 className="text-surface-900 mb-2 text-2xl font-bold">
                     {ticket.title}
                   </h1>
-                  <div className="flex flex-wrap gap-2 items-center space-x-4 text-sm text-surface-500">
+                  <div className="text-surface-500 flex flex-wrap items-center gap-2 space-x-4 text-sm">
                     <div className="flex items-center space-x-1">
                       <User className="size-4" />
                       <span>Created by {ticket.user?.name}</span>
@@ -156,7 +156,7 @@ export const TicketDetailPage = () => {
                       <div>
                         <Link to={`/tickets/${ticket._id}/edit`}>
                           <Button variant="outline" size="sm">
-                            <Pencil className="size-4 mr-2" /> Edit
+                            <Pencil className="mr-2 size-4" /> Edit
                           </Button>
                         </Link>
                       </div>
@@ -177,7 +177,7 @@ export const TicketDetailPage = () => {
               {/* Attachments */}
               <AttachmentSection ticketId={ticket._id} />
 
-              <div className="prose max-w-none mt-4">
+              <div className="prose mt-4 max-w-none">
                 <p className="text-surface-700 whitespace-pre-wrap">
                   {ticket.description}
                 </p>
@@ -195,7 +195,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="font-semibold text-surface-900">Status</h3>
+                <h3 className="text-surface-900 font-semibold">Status</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -216,7 +216,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="font-semibold text-surface-900">Assignment</h3>
+                <h3 className="text-surface-900 font-semibold">Assignment</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -232,10 +232,10 @@ export const TicketDetailPage = () => {
                   ))}
                 </Select>
                 {ticket.assignedUser && (
-                  <div className="mt-3 p-3! bg-surface-50 rounded-lg">
+                  <div className="bg-surface-50 mt-3 rounded-lg p-3!">
                     <div className="flex items-center space-x-2">
-                      <User className="size-4 text-surface-600" />
-                      <span className="text-sm font-medium text-surface-900">
+                      <User className="text-surface-600 size-4" />
+                      <span className="text-surface-900 text-sm font-medium">
                         {ticket.assignedUser.name}
                       </span>
                       <Badge variant="secondary" size="sm">
@@ -252,7 +252,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="font-semibold text-surface-900">Priority</h3>
+                <h3 className="text-surface-900 font-semibold">Priority</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -272,7 +272,7 @@ export const TicketDetailPage = () => {
           {/* Ticket Info */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-surface-900">
+              <h3 className="text-surface-900 font-semibold">
                 Ticket Information
               </h3>
             </CardHeader>
@@ -280,25 +280,25 @@ export const TicketDetailPage = () => {
               <div className="space-y-3 text-sm">
                 <div>
                   <span className="text-surface-600">Ticket ID:</span>
-                  <span className="ml-2 text-surface-900 font-mono uppercase font-bold">
+                  <span className="text-surface-900 ml-2 font-mono font-bold uppercase">
                     {ticket._id.slice(-8)}
                   </span>
                 </div>
                 <div>
                   <span className="text-surface-600">Created:</span>
-                  <span className="ml-2 text-surface-900">
+                  <span className="text-surface-900 ml-2">
                     {format(new Date(ticket.createdAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>
                   <span className="text-surface-600">Last Updated:</span>
-                  <span className="ml-2 text-surface-900">
+                  <span className="text-surface-900 ml-2">
                     {format(new Date(ticket.updatedAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>
                   <span className="text-surface-600">Reporter:</span>
-                  <span className="ml-2 text-surface-900">
+                  <span className="text-surface-900 ml-2">
                     {ticket.user?.name}
                   </span>
                 </div>
@@ -313,7 +313,7 @@ export const TicketDetailPage = () => {
               </CardHeader>
               <CardContent>
                 <Button variant="danger" onClick={handleDeleteTicket}>
-                  <Trash className="size-4 mr-2" /> Delete this ticket
+                  <Trash className="mr-2 size-4" /> Delete this ticket
                 </Button>
               </CardContent>
             </Card>

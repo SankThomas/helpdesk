@@ -33,7 +33,7 @@ export const AgentDashboard = ({ user }) => {
   const unassignedTickets = allTickets?.filter((t) => !t.assignedTo) || [];
   const urgentTickets =
     allTickets?.filter(
-      (t) => t.priority === "urgent" && t.status !== "resolved"
+      (t) => t.priority === "urgent" && t.status !== "resolved",
     ) || [];
 
   const stats = {
@@ -44,24 +44,24 @@ export const AgentDashboard = ({ user }) => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-surface-900">Agent Dashboard</h1>
+        <h1 className="text-surface-900 text-2xl font-bold">Agent Dashboard</h1>
         <p className="text-surface-600">Manage customer support tickets</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Ticket className="size-8 text-primary-600" />
+              <Ticket className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Total Tickets
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.total}
                 </p>
               </div>
@@ -72,12 +72,12 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <User className="size-8 text-success-600" />
+              <User className="text-success-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Assigned to Me
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.assigned}
                 </p>
               </div>
@@ -88,12 +88,12 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="size-8 text-warning-600" />
+              <Clock className="text-warning-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Unassigned
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.unassigned}
                 </p>
               </div>
@@ -104,10 +104,10 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <AlertTriangle className="size-8 text-error-600" />
+              <AlertTriangle className="text-error-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">Urgent</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 text-sm font-medium">Urgent</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.urgent}
                 </p>
               </div>
@@ -116,12 +116,12 @@ export const AgentDashboard = ({ user }) => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Unassigned Tickets */}
         <Card>
           <CardHeader>
-            <div className="flex flex-wrap gap-2 items-center justify-between">
-              <h2 className="text-lg font-semibold text-surface-900">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 className="text-surface-900 text-lg font-semibold">
                 Unassigned Tickets
               </h2>
               <Link to="/tickets?filter=unassigned">
@@ -133,8 +133,8 @@ export const AgentDashboard = ({ user }) => {
           </CardHeader>
           <CardContent>
             {unassignedTickets.length === 0 ? (
-              <div className="text-center py-8">
-                <Ticket className="size-12 text-surface-400 mx-auto mb-3" />
+              <div className="py-8 text-center">
+                <Ticket className="text-surface-400 mx-auto mb-3 size-12" />
                 <p className="text-surface-500">No unassigned tickets</p>
               </div>
             ) : (
@@ -142,17 +142,17 @@ export const AgentDashboard = ({ user }) => {
                 {unassignedTickets.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className="flex flex-wrap gap-2 items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                    className="border-surface-200 hover:bg-surface-50 flex flex-wrap items-start justify-between gap-2 rounded-lg border p-4 transition-colors"
                   >
                     <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="font-medium text-surface-900 mb-1 line-clamp-2">
+                        <h3 className="text-surface-900 mb-1 line-clamp-2 font-medium">
                           {ticket.title}
                         </h3>
-                        <p className="line-clamp-2 text-surface-500 mb-2">
+                        <p className="text-surface-500 mb-2 line-clamp-2">
                           {ticket.description}
                         </p>
-                        <p className="text-sm text-surface-500">
+                        <p className="text-surface-500 text-sm">
                           By {ticket.user?.name}
                         </p>
                       </Link>
@@ -176,7 +176,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-surface-900">
+              <h2 className="text-surface-900 text-lg font-semibold">
                 My Tickets
               </h2>
 
@@ -189,8 +189,8 @@ export const AgentDashboard = ({ user }) => {
           </CardHeader>
           <CardContent>
             {(myTickets?.length || 0) === 0 ? (
-              <div className="text-center py-8">
-                <User className="size-12 text-surface-400 mx-auto mb-3" />
+              <div className="py-8 text-center">
+                <User className="text-surface-400 mx-auto mb-3 size-12" />
                 <p className="text-surface-500">No assigned tickets</p>
               </div>
             ) : (
@@ -198,17 +198,17 @@ export const AgentDashboard = ({ user }) => {
                 {myTickets?.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className="flex flex-wrap gap-2 items-start justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                    className="border-surface-200 hover:bg-surface-50 flex flex-wrap items-start justify-between gap-2 rounded-lg border p-4 transition-colors"
                   >
                     <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="font-medium text-surface-900 mb-1 line-clamp-2">
+                        <h3 className="text-surface-900 mb-1 line-clamp-2 font-medium">
                           {ticket.title}
                         </h3>
-                        <p className="line-clamp-2 text-surface-500 mb-2">
+                        <p className="text-surface-500 mb-2 line-clamp-2">
                           {ticket.description}
                         </p>
-                        <p className="text-sm text-surface-500">
+                        <p className="text-surface-500 text-sm">
                           By {ticket.user?.name}
                         </p>
                       </Link>

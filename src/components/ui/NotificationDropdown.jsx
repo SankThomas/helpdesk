@@ -13,12 +13,12 @@ export const NotificationDropdown = ({ user }) => {
 
   const notifications = useQuery(
     api.notifications.getNotifications,
-    user ? { userId: user._id } : "skip"
+    user ? { userId: user._id } : "skip",
   );
 
   const unreadCount = useQuery(
     api.notifications.getUnreadCount,
-    user ? { userId: user._id } : "skip"
+    user ? { userId: user._id } : "skip",
   );
 
   const markAsRead = useMutation(api.notifications.markAsRead);
@@ -98,8 +98,8 @@ export const NotificationDropdown = ({ user }) => {
         {unreadCount > 0 && (
           <div className="absolute -top-1 -right-1">
             <span className="flex size-5">
-              <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-error-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full size-5 bg-error-500 text-white text-xs items-center justify-center font-medium">
+              <span className="animate-pulse-ring bg-error-400 absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+              <span className="bg-error-500 relative inline-flex size-5 items-center justify-center rounded-full text-xs font-medium text-white">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             </span>
@@ -108,10 +108,10 @@ export const NotificationDropdown = ({ user }) => {
       </Button>
 
       {isOpen && (
-        <div className="absolute -right-40! mt-2 w-96 glass bg-white! rounded-xl shadow-xl border border-surface-200! z-50 animate-bounce-in">
-          <div className="p-4 border-b border-surface-200">
+        <div className="glass border-surface-200! animate-bounce-in absolute -right-40! z-50 mt-2 w-96 rounded-xl border bg-white! shadow-xl">
+          <div className="border-surface-200 border-b p-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-surface-900">Notifications</h3>
+              <h3 className="text-surface-900 font-semibold">Notifications</h3>
               <div className="flex items-center space-x-2">
                 {unreadCount > 0 && (
                   <Button
@@ -120,7 +120,7 @@ export const NotificationDropdown = ({ user }) => {
                     onClick={handleMarkAllRead}
                     className="text-xs"
                   >
-                    <Check className="size-3 mr-1" />
+                    <Check className="mr-1 size-3" />
                     Mark all read
                   </Button>
                 )}
@@ -138,22 +138,22 @@ export const NotificationDropdown = ({ user }) => {
           <div className="max-h-96 overflow-y-auto">
             {!notifications || notifications.length === 0 ? (
               <div className="p-8 text-center">
-                <Bell className="size-12 text-surface-400 mx-auto mb-3" />
+                <Bell className="text-surface-400 mx-auto mb-3 size-12" />
                 <p className="text-surface-500">No notifications</p>
               </div>
             ) : (
-              <div className="divide-y divide-surface-200">
+              <div className="divide-surface-200 divide-y">
                 {notifications.map((notification) => (
                   <div
                     key={notification._id}
-                    className={`p-4 hover:bg-surface-50 cursor-pointer transition-colors ${
+                    className={`hover:bg-surface-50 cursor-pointer p-4 transition-colors ${
                       !notification.read ? "bg-primary-50" : ""
                     }`}
                     onClick={() => handleNotificationClick(notification)}
                   >
                     <div className="flex items-start space-x-3">
                       <div
-                        className={`shrink-0 size-8 rounded-full flex items-center justify-center ${
+                        className={`flex size-8 shrink-0 items-center justify-center rounded-full ${
                           !notification.read
                             ? "bg-primary-100 text-primary-600"
                             : "bg-surface-100 text-surface-600"
@@ -162,7 +162,7 @@ export const NotificationDropdown = ({ user }) => {
                         {getNotificationIcon(notification.type)}
                       </div>
 
-                      <div className="flex-1 min-w-0">
+                      <div className="min-w-0 flex-1">
                         <div className="group flex items-start justify-between">
                           <div className="flex-1">
                             <p
@@ -177,8 +177,8 @@ export const NotificationDropdown = ({ user }) => {
                             <p className="text-surface-600 mt-1">
                               {notification.message}
                             </p>
-                            <div className="flex items-center space-x-2 mt-2">
-                              <div className="flex items-center space-x-1 text-xs text-surface-500">
+                            <div className="mt-2 flex items-center space-x-2">
+                              <div className="text-surface-500 flex items-center space-x-1 text-xs">
                                 <Clock className="size-3" />
                                 <span>
                                   {formatTimeAgo(notification.createdAt)}
@@ -198,7 +198,7 @@ export const NotificationDropdown = ({ user }) => {
                             onClick={(e) =>
                               handleDeleteNotification(notification._id, e)
                             }
-                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="opacity-0 transition-opacity group-hover:opacity-100"
                           >
                             <Trash2 className="size-3" />
                           </Button>

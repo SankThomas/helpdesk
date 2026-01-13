@@ -7,7 +7,7 @@ export const useCurrentUser = () => {
 
   const convexUser = useQuery(
     api.users.getCurrentUser,
-    user ? { clerkId: user.id } : "skip"
+    user ? { clerkId: user.id } : "skip",
   );
 
   // Clerk is still loading

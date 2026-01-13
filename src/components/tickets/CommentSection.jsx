@@ -51,8 +51,8 @@ export const CommentSection = ({ ticketId, currentUser }) => {
     <Card>
       <CardHeader>
         <div className="flex items-center space-x-2">
-          <MessageCircle className="size-5 text-surface-600" />
-          <h3 className="font-semibold text-surface-900">Comments</h3>
+          <MessageCircle className="text-surface-600 size-5" />
+          <h3 className="text-surface-900 font-semibold">Comments</h3>
           {comments && (
             <Badge variant="secondary" size="sm">
               {comments.length}
@@ -65,11 +65,11 @@ export const CommentSection = ({ ticketId, currentUser }) => {
           {/* Comments List */}
           {!comments ? (
             <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600"></div>
+              <div className="border-primary-600 size-6 animate-spin rounded-full border-b-2"></div>
             </div>
           ) : comments.length === 0 ? (
-            <div className="text-center py-8">
-              <MessageCircle className="size-12 text-surface-400 mx-auto mb-3" />
+            <div className="py-8 text-center">
+              <MessageCircle className="text-surface-400 mx-auto mb-3 size-12" />
               <p className="text-surface-500">No comments yet</p>
             </div>
           ) : (
@@ -77,17 +77,17 @@ export const CommentSection = ({ ticketId, currentUser }) => {
               {comments.map((comment) => (
                 <div
                   key={comment._id}
-                  className={`p-4 rounded-lg border ${
+                  className={`rounded-lg border p-4 ${
                     comment.isInternal
                       ? "bg-warning-50 border-warning-200"
                       : "bg-surface-50 border-surface-200"
                   }`}
                 >
-                  <div className="flex flex-wrap gap-2 items-start justify-between mb-3">
-                    <div className="flex flex-wrap gap-2 items-center">
+                  <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <div className="flex items-center space-x-1">
-                        <User className="size-4 text-surface-500" />
-                        <span className="font-medium text-surface-900">
+                        <User className="text-surface-500 size-4" />
+                        <span className="text-surface-900 font-medium">
                           {comment.user?.name}
                         </span>
                       </div>
@@ -114,7 +114,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center space-x-1 text-sm text-surface-500">
+                    <div className="text-surface-500 flex items-center space-x-1 text-sm">
                       <Clock className="size-3" />
                       <span>{format(new Date(comment.createdAt), "PPp")}</span>
                     </div>
@@ -130,7 +130,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
           )}
 
           {/* Add Comment Form */}
-          <div className="border-t border-surface-200 pt-6">
+          <div className="border-surface-200 border-t pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <Textarea
                 placeholder="Add a comment..."
@@ -143,23 +143,23 @@ export const CommentSection = ({ ticketId, currentUser }) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                   {canAddInternalComments && (
-                    <label className="flex items-center space-x-2 cursor-pointer">
+                    <label className="flex cursor-pointer items-center space-x-2">
                       <input
                         type="checkbox"
                         checked={isInternal}
                         onChange={(e) => setIsInternal(e.target.checked)}
-                        className="size-4 text-primary-600 border-surface-300 rounded focus:ring-primary-500 focus:ring-2"
+                        className="text-primary-600 border-surface-300 focus:ring-primary-500 size-4 rounded focus:ring-2"
                       />
                       <div className="flex items-center space-x-1">
-                        <Lock className="size-4 text-surface-500" />
-                        <span className="text-sm text-surface-700">
+                        <Lock className="text-surface-500 size-4" />
+                        <span className="text-surface-700 text-sm">
                           Internal comment
                         </span>
                       </div>
                     </label>
                   )}
                   {isInternal && (
-                    <p className="text-xs text-warning-600">
+                    <p className="text-warning-600 text-xs">
                       Only visible to agents and admins
                     </p>
                   )}

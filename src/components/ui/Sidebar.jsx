@@ -39,7 +39,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
   const location = useLocation();
 
   const filteredNavigation = navigation.filter((item) =>
-    item.roles.includes(userRole)
+    item.roles.includes(userRole),
   );
 
   return (
@@ -47,41 +47,37 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-surface-900/50 lg:hidden backdrop-blur-sm"
+          className="bg-surface-900/50 fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
           onClick={onToggle}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`
-        fixed inset-y-0 left-0 z-50 w-64 glass border-r border-surface-200 transform transition-transform duration-300 ease-in-out
-        lg:relative lg:translate-x-0
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
-      `}
+        className={`glass border-surface-200 fixed inset-y-0 left-0 z-50 w-64 transform border-r transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between h-16 px-2 border-b border-surface-200">
+          <div className="border-surface-200 flex h-16 items-center justify-between border-b px-2">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="size-8 bg-primary-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="bg-primary-600 flex size-8 items-center justify-center rounded-lg shadow-lg">
                 <HelpingHand className="size-5 text-white" />
               </div>
-              <span className="text-lg font-semibold text-surface-900">
+              <span className="text-surface-900 text-lg font-semibold">
                 HelpDesk
               </span>
             </Link>
 
             <button
               onClick={onToggle}
-              className="lg:hidden p-1 rounded-md hover:bg-surface-100 transition-colors"
+              className="hover:bg-surface-100 rounded-md p-1 transition-colors lg:hidden"
             >
-              <X className="size-5 text-surface-600" />
+              <X className="text-surface-600 size-5" />
             </button>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-2 py-6 space-y-2">
+          <nav className="flex-1 space-y-2 px-2 py-6">
             {filteredNavigation.map((item) => {
               const isActive =
                 location.pathname === item.href ||
@@ -93,14 +89,11 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`
-                    group flex items-center px-3 py-2.5 rounded font-medium transition-all duration-200
-                    ${
-                      isActive
-                        ? "bg-primary-50 text-primary-700 shadow-sm border-r-4 border-primary-600"
-                        : "text-surface-700 hover:bg-surface-50 hover:text-surface-900"
-                    }
-                  `}
+                  className={`group flex items-center rounded px-3 py-2.5 font-medium transition-all duration-200 ${
+                    isActive
+                      ? "bg-primary-50 text-primary-700 border-primary-600 border-r-4 shadow-sm"
+                      : "text-surface-700 hover:bg-surface-50 hover:text-surface-900"
+                  } `}
                   onClick={() => {
                     if (window.innerWidth < 1024) {
                       onToggle();
@@ -108,7 +101,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
                   }}
                 >
                   <item.icon
-                    className={`size-5 mr-3 transition-colors ${
+                    className={`mr-3 size-5 transition-colors ${
                       isActive
                         ? "text-primary-600"
                         : "text-surface-500 group-hover:text-surface-700"
@@ -121,10 +114,10 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-surface-200">
-            <div className="text-xs text-surface-500 text-center">
+          <div className="border-surface-200 border-t p-4">
+            <div className="text-surface-500 text-center text-xs">
               Role:{" "}
-              <span className="capitalize font-medium text-surface-700">
+              <span className="text-surface-700 font-medium capitalize">
                 {userRole}
               </span>
             </div>

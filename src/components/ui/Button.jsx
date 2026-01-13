@@ -28,26 +28,18 @@ export const Button = forwardRef(function Button(
     loading = false,
     ...props
   },
-  ref
+  ref,
 ) {
   return (
     <button
       ref={ref}
       disabled={disabled || loading}
-      className={`
-        inline-flex items-center justify-center font-medium rounded-lg
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        disabled:opacity-50 disabled:cursor-not-allowed
-        transition-all duration-200 transform active:scale-102
-        ${variants[variant]}
-        ${sizes[size]}
-        ${className}
-      `}
+      className={`inline-flex transform items-center justify-center rounded-lg font-medium transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none active:scale-102 disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${sizes[size]} ${className} `}
       {...props}
     >
       {loading && (
         <svg
-          className="animate-spin -ml-1 mr-2 size-4"
+          className="mr-2 -ml-1 size-4 animate-spin"
           fill="none"
           viewBox="0 0 24 24"
         >

@@ -39,7 +39,7 @@ export const PriorityIndicator = ({ priority, size = "md" }) => {
 
   return (
     <div
-      className={`inline-flex items-center space-x-2 px-2 py-1 rounded-full ${config.bgColor}`}
+      className={`inline-flex items-center space-x-2 rounded-full px-2 py-1 ${config.bgColor}`}
     >
       <Icon className={`${sizeClasses[size]} ${config.color}`} />
       <span className={`text-sm font-medium ${config.color}`}>

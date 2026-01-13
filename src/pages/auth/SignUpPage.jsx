@@ -11,11 +11,11 @@ export const SignUpPage = () => {
       <div className="space-y-6">
         <SignUp />
 
-        <p className="text-center text-sm text-surface-600">
+        <p className="text-surface-600 text-center text-sm">
           Already have an account?{" "}
           <Link
             to="/sign-in"
-            className="font-medium text-primary-600 hover:text-primary-500 transition-colors"
+            className="text-primary-600 hover:text-primary-500 font-medium transition-colors"
           >
             Sign in here
           </Link>

@@ -31,7 +31,7 @@ export const ReportsPage = () => {
   const recentTickets =
     allTickets?.filter((ticket) => ticket.createdAt >= startDate) || [];
   const resolvedTickets = recentTickets.filter(
-    (ticket) => ticket.status === "resolved"
+    (ticket) => ticket.status === "resolved",
   );
 
   const metrics = {
@@ -67,7 +67,7 @@ export const ReportsPage = () => {
     const dayStart = now - i * 24 * 60 * 60 * 1000;
     const dayEnd = dayStart + 24 * 60 * 60 * 1000;
     const dayTickets = recentTickets.filter(
-      (t) => t.createdAt >= dayStart && t.createdAt < dayEnd
+      (t) => t.createdAt >= dayStart && t.createdAt < dayEnd,
     );
     dailyTickets.push({
       date: new Date(dayStart).toLocaleDateString("en-US", {
@@ -125,11 +125,11 @@ export const ReportsPage = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-surface-900">
+          <h1 className="text-surface-900 text-2xl font-bold">
             Reports & Analytics
           </h1>
           <p className="text-surface-600">
@@ -145,7 +145,7 @@ export const ReportsPage = () => {
       {/* Filters */}
       <Card>
         <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <Select
               label="Date Range"
               value={dateRange}
@@ -168,7 +168,7 @@ export const ReportsPage = () => {
 
             <div className="flex items-end">
               <Button variant="outline" className="w-full">
-                <Calendar className="size-4 mr-2" />
+                <Calendar className="mr-2 size-4" />
                 Custom Range
               </Button>
             </div>
@@ -177,16 +177,16 @@ export const ReportsPage = () => {
       </Card>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <BarChart3 className="size-8 text-primary-600" />
+              <BarChart3 className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Total Tickets
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {metrics.totalTickets}
                 </p>
               </div>
@@ -197,12 +197,12 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Target className="size-8 text-success-600" />
+              <Target className="text-success-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Resolution Rate
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {metrics.resolutionRate}%
                 </p>
               </div>
@@ -213,12 +213,12 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="size-8 text-secondary-600" />
+              <Users className="text-secondary-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Active Users
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {metrics.activeUsers}
                 </p>
               </div>
@@ -227,11 +227,11 @@ export const ReportsPage = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Status Distribution */}
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Ticket Status Distribution
             </h2>
           </CardHeader>
@@ -258,18 +258,18 @@ export const ReportsPage = () => {
                       <div
                         className={`size-3 rounded-full ${colors[status]}`}
                       />
-                      <span className="capitalize font-medium text-surface-900">
+                      <span className="text-surface-900 font-medium capitalize">
                         {status}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-24 bg-surface-200 rounded-full h-2">
+                      <div className="bg-surface-200 h-2 w-24 rounded-full">
                         <div
                           className={`h-2 rounded-full ${colors[status]}`}
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
-                      <span className="text-sm font-medium text-surface-900 w-12 text-right">
+                      <span className="text-surface-900 w-12 text-right text-sm font-medium">
                         {count} ({percentage}%)
                       </span>
                     </div>
@@ -283,7 +283,7 @@ export const ReportsPage = () => {
         {/* Priority Distribution */}
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Priority Distribution
             </h2>
           </CardHeader>
@@ -310,18 +310,18 @@ export const ReportsPage = () => {
                       <div
                         className={`size-3 rounded-full ${colors[priority]}`}
                       />
-                      <span className="capitalize font-medium text-surface-900">
+                      <span className="text-surface-900 font-medium capitalize">
                         {priority}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-24 bg-surface-200 rounded-full h-2">
+                      <div className="bg-surface-200 h-2 w-24 rounded-full">
                         <div
                           className={`h-2 rounded-full ${colors[priority]}`}
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
-                      <span className="text-sm font-medium text-surface-900 w-12 text-right">
+                      <span className="text-surface-900 w-12 text-right text-sm font-medium">
                         {count} ({percentage}%)
                       </span>
                     </div>
@@ -337,12 +337,12 @@ export const ReportsPage = () => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Ticket Creation Trends
             </h2>
             <div className="flex items-center space-x-2">
-              <TrendingUp className="size-4 text-success-600" />
-              <span className="text-sm text-success-600 font-medium">
+              <TrendingUp className="text-success-600 size-4" />
+              <span className="text-success-600 text-sm font-medium">
                 {dailyTickets.reduce((sum, day) => sum + day.count, 0)} tickets
                 this week
               </span>
@@ -351,27 +351,27 @@ export const ReportsPage = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="grid grid-cols-7 gap-2 h-32">
+            <div className="grid h-32 grid-cols-7 gap-2">
               {dailyTickets.map((day, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center justify-end space-y-2"
                 >
                   <div
-                    className="w-full bg-primary-500 rounded-t-sm transition-all duration-300 hover:bg-primary-600"
+                    className="bg-primary-500 hover:bg-primary-600 w-full rounded-t-sm transition-all duration-300"
                     style={{
                       height: `${(day.count / maxDailyCount) * 100}%`,
                       minHeight: day.count > 0 ? "8px" : "2px",
                     }}
                   />
-                  <span className="text-xs font-medium text-surface-600">
+                  <span className="text-surface-600 text-xs font-medium">
                     {day.date}
                   </span>
-                  <span className="text-xs text-surface-500">{day.count}</span>
+                  <span className="text-surface-500 text-xs">{day.count}</span>
                 </div>
               ))}
             </div>
-            <div className="text-center text-sm text-surface-500">
+            <div className="text-surface-500 text-center text-sm">
               Daily ticket creation over the last 7 days
             </div>
           </div>

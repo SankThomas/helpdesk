@@ -4,7 +4,7 @@ import { Button } from "../../components/ui/Button";
 
 export const ErrorPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto min-h-96 space-y-4">
+    <div className="mx-auto flex min-h-96 max-w-4xl flex-col items-center justify-center space-y-4 text-center">
       <h1>Oops, this page no longer exists</h1>
       <p>
         Seems like you have found a page that is no longer on the website.

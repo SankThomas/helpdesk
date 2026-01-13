@@ -17,7 +17,7 @@ import { ErrorPage } from "./pages/error/ErrorPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-surface-50 transition-colors">
+    <div className="bg-surface-50 min-h-screen transition-colors">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/sign-in/*" element={<SignInPage />} />

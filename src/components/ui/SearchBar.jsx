@@ -20,7 +20,7 @@ export const SearchBar = ({ currentUser }) => {
           userRole: currentUser.role,
           userId: currentUser._id,
         }
-      : "skip"
+      : "skip",
   );
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const SearchBar = ({ currentUser }) => {
         if (e.key === "ArrowDown") {
           e.preventDefault();
           setSelectedIndex((prev) =>
-            prev < searchResults.length - 1 ? prev + 1 : prev
+            prev < searchResults.length - 1 ? prev + 1 : prev,
           );
         }
 
@@ -84,7 +84,7 @@ export const SearchBar = ({ currentUser }) => {
   return (
     <div className="relative">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 size-4" />
+        <Search className="text-surface-400 absolute top-1/2 left-3 size-4 -translate-y-1/2 transform" />
         <input
           ref={inputRef}
           type="text"
@@ -96,12 +96,7 @@ export const SearchBar = ({ currentUser }) => {
             setSelectedIndex(-1);
           }}
           onFocus={() => setIsOpen(true)}
-          className="
-            w-full pl-10 pr-10 py-2 border border-surface-300 rounded-lg
-            bg-white text-surface-900 placeholder:text-surface-400
-            focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500
-            transition-all duration-200
-          "
+          className="border-surface-300 text-surface-900 placeholder:text-surface-400 focus:border-primary-500 focus:ring-primary-500 w-full rounded-lg border bg-white py-2 pr-10 pl-10 transition-all duration-200 focus:ring-1 focus:outline-none"
         />
         {query && (
           <button
@@ -109,7 +104,7 @@ export const SearchBar = ({ currentUser }) => {
               setQuery("");
               setIsOpen(false);
             }}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-surface-400 hover:text-surface-600"
+            className="text-surface-400 hover:text-surface-600 absolute top-1/2 right-3 -translate-y-1/2 transform"
           >
             <X className="size-4" />
           </button>
@@ -117,13 +112,13 @@ export const SearchBar = ({ currentUser }) => {
       </div>
 
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-surface-200 z-50 max-h-96 overflow-y-auto">
+        <div className="border-surface-200 absolute top-full right-0 left-0 z-50 mt-2 max-h-96 overflow-y-auto rounded-lg border bg-white shadow-xl">
           {!searchResults ? (
             <div className="p-4 text-center">
-              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600 mx-auto"></div>
+              <div className="border-primary-600 mx-auto size-6 animate-spin rounded-full border-b-2"></div>
             </div>
           ) : searchResults.length === 0 ? (
-            <div className="p-4 text-center text-surface-500">
+            <div className="text-surface-500 p-4 text-center">
               No tickets found for "{query}"
             </div>
           ) : (
@@ -131,19 +126,16 @@ export const SearchBar = ({ currentUser }) => {
               {searchResults.map((ticket, index) => (
                 <div
                   key={ticket._id}
-                  className={`
-                    px-2 py-3 cursor-pointer transition-colors
-                    ${
-                      index === selectedIndex
-                        ? "bg-primary-50"
-                        : "hover:bg-surface-50"
-                    }
-                  `}
+                  className={`cursor-pointer px-2 py-3 transition-colors ${
+                    index === selectedIndex
+                      ? "bg-primary-50"
+                      : "hover:bg-surface-50"
+                  } `}
                   onClick={() => handleResultClick(ticket._id)}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-surface-900 truncate">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-surface-900 truncate font-medium">
                         {ticket.title}
                       </h4>
 
@@ -159,10 +151,10 @@ export const SearchBar = ({ currentUser }) => {
                         </Badge>
                       </div>
 
-                      <p className="text-sm text-surface-600 truncate mt-1">
+                      <p className="text-surface-600 mt-1 truncate text-sm">
                         {ticket.description}
                       </p>
-                      <div className="flex items-center space-x-3 mt-2 text-xs text-surface-500">
+                      <div className="text-surface-500 mt-2 flex items-center space-x-3 text-xs">
                         <div className="flex items-center space-x-1">
                           <User className="size-3" />
                           <span>{ticket.user?.name}</span>

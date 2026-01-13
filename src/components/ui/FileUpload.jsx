@@ -46,7 +46,7 @@ export const FileUpload = ({
         alert(
           `File ${file.name} is too large. Maximum size is ${
             maxSize / 1024 / 1024
-          }MB`
+          }MB`,
         );
         return false;
       }
@@ -100,14 +100,11 @@ export const FileUpload = ({
   return (
     <div className="space-y-4">
       <div
-        className={`
-          relative border-2 border-dashed rounded-lg p-6 text-center transition-all duration-200
-          ${
-            dragActive
-              ? "border-primary-500 bg-primary-50"
-              : "border-surface-300 hover:border-primary-400 hover:bg-surface-50"
-          }
-        `}
+        className={`relative rounded-lg border-2 border-dashed p-6 text-center transition-all duration-200 ${
+          dragActive
+            ? "border-primary-500 bg-primary-50"
+            : "border-surface-300 hover:border-primary-400 hover:bg-surface-50"
+        } `}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
@@ -119,11 +116,11 @@ export const FileUpload = ({
           multiple={multiple}
           accept={accept}
           onChange={handleChange}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
         />
 
         <div className="space-y-3">
-          <Upload className="size-8 text-surface-400 mx-auto" />
+          <Upload className="text-surface-400 mx-auto size-8" />
           <div>
             <p className="text-surface-700 font-medium">
               Drop files here or click to browse
@@ -145,19 +142,19 @@ export const FileUpload = ({
 
       {selectedFiles.length > 0 && (
         <div className="space-y-2">
-          <h4 className="font-medium text-surface-900">Selected Files:</h4>
+          <h4 className="text-surface-900 font-medium">Selected Files:</h4>
           {selectedFiles.map((file, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-surface-50 rounded-lg border border-surface-200"
+              className="bg-surface-50 border-surface-200 flex items-center justify-between rounded-lg border p-3"
             >
               <div className="flex items-center space-x-3">
                 {getFileIcon(file)}
                 <div>
-                  <p className="font-medium text-surface-900 line-clamp-1">
+                  <p className="text-surface-900 line-clamp-1 font-medium">
                     {file.name}
                   </p>
-                  <p className="text-sm text-surface-500">
+                  <p className="text-surface-500 text-sm">
                     {formatFileSize(file.size)}
                   </p>
                 </div>

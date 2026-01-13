@@ -17,8 +17,8 @@ export const LandingPage = () => {
 
   return (
     <div className="bg-white">
-      <header className="flex items-center justify-between fixed w-full p-4">
-        <h2 className="font-bold text-2xl">Helpdesk</h2>
+      <header className="fixed flex w-full items-center justify-between p-4">
+        <h2 className="text-2xl font-bold">Helpdesk</h2>
 
         <nav>
           <ul className="flex items-center justify-center gap-4">
@@ -39,7 +39,7 @@ export const LandingPage = () => {
         </nav>
       </header>
 
-      <main className="flex items-center justify-center h-screen max-w-4xl mx-auto text-center">
+      <main className="mx-auto flex h-screen max-w-4xl items-center justify-center text-center">
         <article className="space-y-6">
           <h1 className="text-4xl! lg:text-6xl!">Helpdesk by Sankara</h1>
           <p className="text-surface-500 text-lg! lg:text-xl!">

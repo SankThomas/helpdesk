@@ -80,7 +80,6 @@ A complete helpdesk web application built with React, Convex, and Clerk for mode
    Follow the prompts to create a new Convex project and get your deployment URL.
 
 4. **Set up Clerk**
-
    - Go to [clerk.com](https://clerk.com) and create a new application
    - Copy your publishable key from the dashboard
 

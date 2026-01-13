@@ -37,10 +37,10 @@ export const UserDashboard = ({ user }) => {
   const recentTickets = tickets?.slice(0, 5) || [];
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex flex-wrap gap-2 items-center justify-between">
+    <div className="animate-fade-in space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-surface-900">
+          <h1 className="text-surface-900 text-2xl font-bold">
             Your Dashboard
           </h1>
           <p className="text-surface-600">Manage your support tickets</p>
@@ -55,16 +55,16 @@ export const UserDashboard = ({ user }) => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Ticket className="size-8 text-primary-600" />
+              <Ticket className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">
+                <p className="text-surface-600 text-sm font-medium">
                   Total Tickets
                 </p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.total}
                 </p>
               </div>
@@ -75,10 +75,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="size-8 text-error-600" />
+              <Clock className="text-error-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">Open</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 text-sm font-medium">Open</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.open}
                 </p>
               </div>
@@ -89,10 +89,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="size-8 text-warning-600" />
+              <Clock className="text-warning-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">Pending</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 text-sm font-medium">Pending</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.pending}
                 </p>
               </div>
@@ -103,10 +103,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <CheckCircle className="size-8 text-success-600" />
+              <CheckCircle className="text-success-600 size-8" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-surface-600">Resolved</p>
-                <p className="text-2xl font-bold text-surface-900">
+                <p className="text-surface-600 text-sm font-medium">Resolved</p>
+                <p className="text-surface-900 text-2xl font-bold">
                   {stats.resolved}
                 </p>
               </div>
@@ -119,7 +119,7 @@ export const UserDashboard = ({ user }) => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-surface-900">
+            <h2 className="text-surface-900 text-lg font-semibold">
               Recent Tickets
             </h2>
             <Link to="/tickets">
@@ -132,8 +132,8 @@ export const UserDashboard = ({ user }) => {
 
         <CardContent>
           {recentTickets.length === 0 ? (
-            <div className="text-center py-8">
-              <Ticket className="size-12 text-surface-400 mx-auto mb-3" />
+            <div className="py-8 text-center">
+              <Ticket className="text-surface-400 mx-auto mb-3 size-12" />
               <p className="text-surface-500 mb-4">No tickets yet</p>
               <Link to="/tickets/new">
                 <Button>Create your first ticket</Button>
@@ -144,19 +144,19 @@ export const UserDashboard = ({ user }) => {
               {recentTickets.slice(0, 4).map((ticket) => (
                 <div
                   key={ticket._id}
-                  className="flex flex-wrap gap-2 p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                  className="border-surface-200 hover:bg-surface-50 flex flex-wrap gap-2 rounded-lg border p-4 transition-colors"
                 >
                   <div>
                     <Link to={`/tickets/${ticket._id}`} className="block">
-                      <h3 className="font-medium text-surface-900 mb-2">
+                      <h3 className="text-surface-900 mb-2 font-medium">
                         {ticket.title}
                       </h3>
-                      <p className="text-sm text-surface-500 line-clamp-2">
+                      <p className="text-surface-500 line-clamp-2 text-sm">
                         {ticket.description}
                       </p>
                     </Link>
 
-                    <div className="flex flex-wrap gap-1 items-center space-x-4 text-sm text-surface-500 mt-4">
+                    <div className="text-surface-500 mt-4 flex flex-wrap items-center gap-1 space-x-4 text-sm">
                       <span>By {ticket.user?.name}</span>
                       {ticket.assignedUser && (
                         <span>Assigned to {ticket.assignedUser.name}</span>

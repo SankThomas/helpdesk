@@ -24,18 +24,18 @@ export const AttachmentSection = ({ ticketId }) => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="size-12 object-cover rounded border border-surface-200"
+          className="border-surface-200 size-12 rounded border object-cover"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="size-4 text-error-600" />;
+      return <FileText className="text-error-600 size-4" />;
     }
 
     // Fallback for unknown types
-    return <File className="size-4 text-surface-600" />;
+    return <File className="text-surface-600 size-4" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -51,7 +51,7 @@ export const AttachmentSection = ({ ticketId }) => {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <h2 className="font-semibold text-surface-900">Attachments</h2>
+            <h2 className="text-surface-900 font-semibold">Attachments</h2>
             {attachments && (
               <Badge variant="secondary" size="sm">
                 {attachments.length}
@@ -65,11 +65,11 @@ export const AttachmentSection = ({ ticketId }) => {
         <div className="space-y-4">
           {!attachments ? (
             <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600"></div>
+              <div className="border-primary-600 size-6 animate-spin rounded-full border-b-2"></div>
             </div>
           ) : attachments.length === 0 ? (
-            <div className="text-center py-8">
-              <Paperclip className="size-12 text-surface-400 mx-auto mb-3" />
+            <div className="py-8 text-center">
+              <Paperclip className="text-surface-400 mx-auto mb-3 size-12" />
               <p className="text-surface-500">No attachments yet</p>
             </div>
           ) : (
@@ -77,15 +77,15 @@ export const AttachmentSection = ({ ticketId }) => {
               {attachments.map((attachment) => (
                 <div
                   key={attachment._id}
-                  className="flex items-center justify-between p-2 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                  className="border-surface-200 hover:bg-surface-50 flex items-center justify-between rounded-lg border p-2 transition-colors"
                 >
-                  <div className="flex items-center space-x-3 flex-1 min-w-0">
+                  <div className="flex min-w-0 flex-1 items-center space-x-3">
                     {getFileIcon(attachment)}
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-surface-900 truncate">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-surface-900 truncate font-medium">
                         {attachment.fileName}
                       </p>
-                      <div className="flex flex-wrap items-center space-x-4 text-sm text-surface-500">
+                      <div className="text-surface-500 flex flex-wrap items-center space-x-4 text-sm">
                         <span>{formatFileSize(attachment.fileSize)}</span>
                         <div className="flex items-center space-x-1">
                           <User className="size-4" />
