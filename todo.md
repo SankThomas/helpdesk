@@ -5,3 +5,4 @@
 7. Add alert modals before deleting a ticket
 8. Add user functionality on users page
 9. Custom range not working on reports page
+10. Improve mobile responsiveness
