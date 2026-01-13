@@ -6,3 +6,4 @@
 8. Add user functionality on users page
 9. Custom range not working on reports page
 10. Improve mobile responsiveness
+11. Admins should be able to delete all comments. Users should be able to delete their comments.
