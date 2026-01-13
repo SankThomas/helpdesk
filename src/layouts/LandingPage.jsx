@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCurrentUser } from "../hooks/useCurrentUser";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
+import { useUser } from "@clerk/clerk-react";
 
 export const LandingPage = () => {
+  const { user } = useUser();
+  let navigate = useNavigate();
   const { currentUser } = useCurrentUser();
+
+  useEffect(() => {
+    if (currentUser && user) {
+      navigate("/dashboard");
+    }
+  }, [currentUser, navigate, user]);
 
   return (
     <div className="bg-white">
