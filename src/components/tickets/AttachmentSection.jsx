@@ -24,18 +24,18 @@ export const AttachmentSection = ({ ticketId }) => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="w-12 h-12 object-cover rounded border border-surface-200"
+          className="size-12 object-cover rounded border border-surface-200"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="w-4 h-4 text-error-600" />;
+      return <FileText className="size-4 text-error-600" />;
     }
 
     // Fallback for unknown types
-    return <File className="w-4 h-4 text-surface-600" />;
+    return <File className="size-4 text-surface-600" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -61,15 +61,15 @@ export const AttachmentSection = ({ ticketId }) => {
         </div>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="px-2!">
         <div className="space-y-4">
           {!attachments ? (
             <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"></div>
+              <div className="animate-spin rounded-full size-6 border-b-2 border-primary-600"></div>
             </div>
           ) : attachments.length === 0 ? (
             <div className="text-center py-8">
-              <Paperclip className="w-12 h-12 text-surface-400 mx-auto mb-3" />
+              <Paperclip className="size-12 text-surface-400 mx-auto mb-3" />
               <p className="text-surface-500">No attachments yet</p>
             </div>
           ) : (
@@ -77,7 +77,7 @@ export const AttachmentSection = ({ ticketId }) => {
               {attachments.map((attachment) => (
                 <div
                   key={attachment._id}
-                  className="flex items-center justify-between p-4 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
+                  className="flex items-center justify-between p-2 border border-surface-200 rounded-lg hover:bg-surface-50 transition-colors"
                 >
                   <div className="flex items-center space-x-3 flex-1 min-w-0">
                     {getFileIcon(attachment)}
@@ -85,10 +85,10 @@ export const AttachmentSection = ({ ticketId }) => {
                       <p className="font-medium text-surface-900 truncate">
                         {attachment.fileName}
                       </p>
-                      <div className="flex items-center space-x-4 text-sm text-surface-500">
+                      <div className="flex flex-wrap items-center space-x-4 text-sm text-surface-500">
                         <span>{formatFileSize(attachment.fileSize)}</span>
                         <div className="flex items-center space-x-1">
-                          <User className="w-3 h-3" />
+                          <User className="size-4" />
                           <span>{attachment.user?.name}</span>
                         </div>
                       </div>
@@ -101,7 +101,7 @@ export const AttachmentSection = ({ ticketId }) => {
                       size="sm"
                       onClick={() => window.open(attachment.fileUrl, "_blank")}
                     >
-                      <Download className="w-4 h-4" />
+                      <Download className="size-4" />
                     </Button>
                   </div>
                 </div>
