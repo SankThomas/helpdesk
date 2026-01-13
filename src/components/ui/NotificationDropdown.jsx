@@ -108,7 +108,7 @@ export const NotificationDropdown = ({ user }) => {
       </Button>
 
       {isOpen && (
-        <div className="glass border-surface-200! animate-bounce-in absolute -right-40! z-50 mt-2 w-96 rounded-xl border bg-white! shadow-xl">
+        <div className="glass border-surface-200! animate-bounce-in absolute -right-40! z-50 mt-2 w-96 rounded-xl border bg-white! shadow-xl sm:right-0!">
           <div className="border-surface-200 border-b p-4">
             <div className="flex items-center justify-between">
               <h3 className="text-surface-900 font-semibold">Notifications</h3>
