@@ -117,18 +117,18 @@ export const EditTicketPage = () => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="w-12 h-12 object-cover rounded border border-surface-200"
+          className="size-12 object-cover rounded border border-surface-200"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="w-4 h-4 text-error-600" />;
+      return <FileText className="size-4 text-error-600" />;
     }
 
     // Fallback for unknown types
-    return <File className="w-4 h-4 text-surface-600" />;
+    return <File className="size-4 text-surface-600" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -145,16 +145,16 @@ export const EditTicketPage = () => {
     <div>
       <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
         <div className="flex items-center space-x-4">
-          <Button
-            as={Link}
-            to={`/tickets/${ticketId}`}
-            variant="ghost"
-            size="sm"
-            className="flex items-center space-x-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Ticket</span>
-          </Button>
+          <Link to={`/tickets/${ticketId}`}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center space-x-2"
+            >
+              <ArrowLeft className="size-4" />
+              <span>Back to Ticket</span>
+            </Button>
+          </Link>
         </div>
 
         <div>
@@ -199,7 +199,7 @@ export const EditTicketPage = () => {
               {existingAttachments && existingAttachments.length > 0 && (
                 <div className="space-y-2 mt-4">
                   <h3 className="font-semibold text-surface-900 flex items-center space-x-2">
-                    <Paperclip className="w-4 h-4 mr-2" /> Existing Attachments
+                    <Paperclip className="size-4 mr-2" /> Existing Attachments
                   </h3>
                   {existingAttachments.map((att) => (
                     <div
@@ -222,7 +222,7 @@ export const EditTicketPage = () => {
                               size="sm"
                               onClick={() => window.open(att.fileUrl, "_blank")}
                             >
-                              <Download className="w-4 h-4" />
+                              <Download className="size-4" />
                             </Button>
                             <Button
                               type="button"
@@ -234,7 +234,7 @@ export const EditTicketPage = () => {
                               }}
                               className="text-error-600 hover:text-error-700"
                             >
-                              <Trash2 className="w-4 h-4" />
+                              <Trash2 className="size-4" />
                             </Button>
                           </div>
                         </>

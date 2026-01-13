@@ -8,6 +8,7 @@ import { Select } from "../../components/ui/Select";
 import { Badge } from "../../components/ui/Badge";
 import { Modal } from "../../components/ui/Modal";
 import { Users, Search, UserCheck, UserX, Shield, Plus } from "lucide-react";
+import { format } from "date-fns";
 
 const roleColors = {
   user: "default",
@@ -62,7 +63,7 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="w-8 h-8 text-primary-600" />
+              <Users className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="font-medium text-surface-600">Total Users</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -76,7 +77,7 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Shield className="w-8 h-8 text-primary-600" />
+              <Shield className="size-8 text-primary-600" />
               <div className="ml-4">
                 <p className="font-medium text-surface-600">Admins</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -90,7 +91,7 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <UserCheck className="w-8 h-8 text-secondary-600" />
+              <UserCheck className="size-8 text-secondary-600" />
               <div className="ml-4">
                 <p className="font-medium text-surface-600">Agents</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -104,7 +105,7 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <UserX className="w-8 h-8 text-surface-600" />
+              <UserX className="size-8 text-surface-600" />
               <div className="ml-4">
                 <p className="font-medium text-surface-600">Users</p>
                 <p className="text-2xl font-bold text-surface-900">
@@ -121,7 +122,7 @@ export const UsersPage = () => {
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 size-4" />
               <Input
                 placeholder="Search users..."
                 value={searchTerm}
@@ -168,11 +169,11 @@ export const UsersPage = () => {
         <CardContent>
           {!users ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+              <div className="animate-spin rounded-full size-8 border-b-2 border-primary-600"></div>
             </div>
           ) : filteredUsers.length === 0 ? (
             <div className="text-center py-12">
-              <Users className="w-12 h-12 text-surface-400 mx-auto mb-4" />
+              <Users className="size-12 text-surface-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-surface-900 mb-2">
                 No users found
               </h3>
@@ -185,19 +186,19 @@ export const UsersPage = () => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-surface-200">
-                    <th className="text-left py-3 px-4 font-medium text-surface-900">
+                    <th className="text-left py-3 px-2 font-medium text-surface-900">
                       User
                     </th>
-                    <th className="text-left py-3 px-4 font-medium text-surface-900">
+                    <th className="text-left py-3 px-2 font-medium text-surface-900">
                       Email
                     </th>
-                    <th className="text-left py-3 px-4 font-medium text-surface-900">
+                    <th className="text-left py-3 px-2 font-medium text-surface-900">
                       Role
                     </th>
-                    <th className="text-left py-3 px-4 font-medium text-surface-900">
+                    <th className="text-left py-3 px-2 font-medium text-surface-900">
                       Joined
                     </th>
-                    <th className="text-left py-3 px-4 font-medium text-surface-900">
+                    <th className="text-left py-3 px-2 font-medium text-surface-900">
                       Actions
                     </th>
                   </tr>
@@ -208,36 +209,36 @@ export const UsersPage = () => {
                       key={user._id}
                       className="hover:bg-surface-50 transition-colors"
                     >
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2">
                         <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-linear-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-medium">
+                          <div className="size-10 bg-linear-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-medium">
                             {user.name.charAt(0).toUpperCase()}
                           </div>
                           <div>
-                            <p className="font-medium text-surface-900">
+                            <p className="font-medium text-surface-900 truncate">
                               {user.name}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-4 text-surface-600">
+                      <td className="py-4 px-2 text-surface-600">
                         {user.email}
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2">
                         <Badge variant={roleColors[user.role]} size="sm">
                           {user.role}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4 text-surface-600">
-                        {new Date(user.createdAt).toLocaleDateString()}
+                      <td className="py-4 px-2 text-surface-600 truncate">
+                        {format(new Date(user.createdAt), "MMM do, yyyy")}
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2">
                         <Select
                           value={user.role}
                           onChange={(e) =>
                             handleRoleChange(user._id, e.target.value)
                           }
-                          className="w-32"
+                          className="w-auto!"
                         >
                           <option value="user">User</option>
                           <option value="agent">Agent</option>

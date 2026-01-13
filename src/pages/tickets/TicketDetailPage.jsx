@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, NavLink } from "react-router-dom";
 import { Card, CardHeader, CardContent } from "../../components/ui/Card";
 import { Button } from "../../components/ui/Button";
 import { Badge } from "../../components/ui/Badge";
@@ -12,6 +12,7 @@ import { AttachmentSection } from "../../components/tickets/AttachmentSection";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { Trash } from "lucide-react";
+import { format } from "date-fns";
 
 const statusColors = {
   open: "error",
@@ -118,16 +119,16 @@ export const TicketDetailPage = () => {
     <div className="mx-auto space-y-6 animate-fade-in">
       {/* Header */}
       <div className="flex items-center space-x-4">
-        <Button
-          as={Link}
-          to="/tickets"
-          variant="ghost"
-          size="sm"
-          className="flex items-center space-x-2"
-        >
-          <ArrowLeft className="size-4" />
-          <span>Back to Tickets</span>
-        </Button>
+        <NavLink to="/tickets">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center space-x-2"
+          >
+            <ArrowLeft className="size-4" />
+            <span>Back to Tickets</span>
+          </Button>
+        </NavLink>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -136,33 +137,28 @@ export const TicketDetailPage = () => {
           {/* Ticket Details */}
           <Card>
             <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
+              <div className="flex flex-wrap gap-2 items-start justify-between">
+                <div className="">
                   <h1 className="text-2xl font-bold text-surface-900 mb-2">
                     {ticket.title}
                   </h1>
-                  <div className="flex items-center space-x-4 text-sm text-surface-500">
+                  <div className="flex flex-wrap gap-2 items-center space-x-4 text-sm text-surface-500">
                     <div className="flex items-center space-x-1">
                       <User className="size-4" />
                       <span>Created by {ticket.user?.name}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Calendar className="size-4" />
-                      <span>
-                        {new Date(ticket.createdAt).toLocaleDateString()}
-                      </span>
+                      <span>{format(new Date(ticket.createdAt), "PP")}</span>
                     </div>
 
                     {isOwner && (
                       <div>
-                        <Button
-                          as={Link}
-                          to={`/tickets/${ticket._id}/edit`}
-                          variant="outline"
-                          size="sm"
-                        >
-                          <Pencil className="size-4 mr-2" /> Edit
-                        </Button>
+                        <Link to={`/tickets/${ticket._id}/edit`}>
+                          <Button variant="outline" size="sm">
+                            <Pencil className="size-4 mr-2" /> Edit
+                          </Button>
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -236,7 +232,7 @@ export const TicketDetailPage = () => {
                   ))}
                 </Select>
                 {ticket.assignedUser && (
-                  <div className="mt-3 p-3 bg-surface-50 rounded-lg">
+                  <div className="mt-3 p-3! bg-surface-50 rounded-lg">
                     <div className="flex items-center space-x-2">
                       <User className="size-4 text-surface-600" />
                       <span className="text-sm font-medium text-surface-900">
@@ -283,21 +279,21 @@ export const TicketDetailPage = () => {
             <CardContent>
               <div className="space-y-3 text-sm">
                 <div>
-                  <span className="text-surface-600">ID:</span>
-                  <span className="ml-2 text-surface-900 font-mono">
+                  <span className="text-surface-600">Ticket ID:</span>
+                  <span className="ml-2 text-surface-900 font-mono uppercase font-bold">
                     {ticket._id.slice(-8)}
                   </span>
                 </div>
                 <div>
                   <span className="text-surface-600">Created:</span>
                   <span className="ml-2 text-surface-900">
-                    {new Date(ticket.createdAt).toLocaleString()}
+                    {format(new Date(ticket.createdAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>
                   <span className="text-surface-600">Last Updated:</span>
                   <span className="ml-2 text-surface-900">
-                    {new Date(ticket.updatedAt).toLocaleString()}
+                    {format(new Date(ticket.updatedAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>

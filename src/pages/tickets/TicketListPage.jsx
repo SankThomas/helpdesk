@@ -11,6 +11,7 @@ import { PriorityIndicator } from "../../components/ui/PriorityIndicator";
 import { Plus, Search, Ticket } from "lucide-react";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { format } from "date-fns";
 
 export const TicketListPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -86,7 +87,7 @@ export const TicketListPage = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap gap-2 items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-surface-900">
             {currentUser.role === "user" ? "My Tickets" : "All Tickets"}
@@ -98,23 +99,21 @@ export const TicketListPage = () => {
           </p>
         </div>
         {canCreateTickets && (
-          <Button
-            as={Link}
-            to="/tickets/new"
-            className="flex items-center space-x-2"
-          >
-            <Plus className="w-4 h-4" />
-            <span>New Ticket</span>
-          </Button>
+          <Link to="/tickets/new">
+            <Button className="flex items-center space-x-2">
+              <Plus className="size-4" />
+              <span>New Ticket</span>
+            </Button>
+          </Link>
         )}
       </div>
 
       {/* Filters */}
       <Card>
-        <CardContent className="p-6">
+        <CardContent className="p-3!">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400 size-4" />
               <Input
                 placeholder="Search tickets..."
                 value={searchTerm}
@@ -174,12 +173,12 @@ export const TicketListPage = () => {
         </CardHeader>
         <CardContent>
           {!displayTickets ? (
-            <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+            <div className="flex flex-wrap gap-2 items-center justify-center py-8">
+              <div className="animate-spin rounded-full size-8 border-b-2 border-primary-600"></div>
             </div>
           ) : displayTickets.length === 0 ? (
             <div className="text-center py-12">
-              <Ticket className="w-12 h-12 text-surface-400 mx-auto mb-4" />
+              <Ticket className="size-12 text-surface-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-surface-900 mb-2">
                 {searchTerm ? "No tickets found" : "No tickets yet"}
               </h3>
@@ -189,9 +188,9 @@ export const TicketListPage = () => {
                   : "Create your first ticket to get started"}
               </p>
               {canCreateTickets && !searchTerm && (
-                <Button as={Link} to="/tickets/new">
-                  Create Ticket
-                </Button>
+                <Link to="/tickets/new">
+                  <Button>Create Ticket</Button>
+                </Link>
               )}
             </div>
           ) : (
@@ -199,10 +198,10 @@ export const TicketListPage = () => {
               {displayTickets.map((ticket) => (
                 <div
                   key={ticket._id}
-                  className="border border-surface-200 rounded-lg p-4 hover:bg-surface-50 transition-colors"
+                  className="border border-surface-200 rounded-lg p-2 hover:bg-surface-50 transition-colors"
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap gap-2 items-start justify-between">
+                    <div>
                       <Link
                         to={`/tickets/${ticket._id}`}
                         className="block hover:text-primary-600 transition-colors"
@@ -215,18 +214,19 @@ export const TicketListPage = () => {
                         </p>
                       </Link>
 
-                      <div className="flex items-center space-x-4 text-sm text-surface-500">
+                      <div className="flex flex-wrap gap-2 items-center space-x-4 text-sm text-surface-500">
                         <span>By {ticket.user?.name}</span>
                         {isAgentOrAdmin && ticket.assignedUser && (
                           <span>Assigned to {ticket.assignedUser.name}</span>
                         )}
                         <span>
-                          {new Date(ticket.createdAt).toLocaleDateString()}
+                          Assigned on:{" "}
+                          {format(new Date(ticket.createdAt), "PP")}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2 ml-4">
+                    <div className="flex items-center gap-2">
                       <PriorityIndicator priority={ticket.priority} size="sm" />
                       <StatusIndicator status={ticket.status} size="sm" />
                     </div>
