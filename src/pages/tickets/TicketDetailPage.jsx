@@ -297,7 +297,7 @@ export const TicketDetailPage = () => {
                   </span>
                 </div>
                 <div>
-                  <span className="text-surface-600">Reporter:</span>
+                  <span className="text-surface-600">Reported By:</span>
                   <span className="text-surface-900 ml-2">
                     {ticket.user?.name}
                   </span>
