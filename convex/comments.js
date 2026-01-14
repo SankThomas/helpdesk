@@ -26,7 +26,7 @@ export const getCommentsByTicket = query({
           ...comment,
           user,
         };
-      })
+      }),
     );
 
     return commentsWithUsers.sort((a, b) => a.createdAt - b.createdAt);
@@ -79,10 +79,10 @@ export const addComment = mutation({
             q.and(
               q.or(
                 q.eq(q.field("role"), "agent"),
-                q.eq(q.field("role"), "admin")
+                q.eq(q.field("role"), "admin"),
               ),
-              q.neq(q.field("_id"), userId)
-            )
+              q.neq(q.field("_id"), userId),
+            ),
           )
           .collect();
 
@@ -97,12 +97,53 @@ export const addComment = mutation({
               fromUserId: userId,
               read: false,
               createdAt: Date.now(),
-            })
-          )
+            }),
+          ),
         );
       }
     }
 
     return commentId;
+  },
+});
+
+export const deleteComment = mutation({
+  args: {
+    commentId: v.id("comments"),
+    userId: v.id("users"),
+  },
+  handler: async (ctx, { commentId, userId }) => {
+    const user = await ctx.db.get(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const comment = await ctx.db.get(commentId);
+    if (!comment) {
+      throw new Error("Comment not found");
+    }
+
+    const ticket = await ctx.db.get(comment.ticketId);
+    if (!ticket) {
+      throw new Error("Ticket not found");
+    }
+
+    const isOwner = comment.userId === userId;
+    const isAdmin = user.role === "admin";
+    const isAgentAssigned =
+      user.role === "agent" && ticket.assignedTo === userId;
+
+    if (!isOwner && !isAdmin && !isAgentAssigned) {
+      throw new Error("You are not authorized to delete this comment");
+    }
+
+    await ctx.db.delete(commentId);
+
+    // Refresh ticket to show new updatedAt time ****
+    await ctx.db.patch(ticket._id, {
+      updatedAt: Date.now(),
+    });
+
+    return { success: true };
   },
 });
