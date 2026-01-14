@@ -83,7 +83,7 @@ export const FileUpload = ({
     }
 
     if (file.type.includes("pdf") || file.type.includes("document")) {
-      return <FileText className="size-9" />;
+      return <FileText className="text-error-600 size-9" />;
     }
 
     return <File className="size-9" />;
