@@ -31,11 +31,11 @@ export const AttachmentSection = ({ ticketId }) => {
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="text-error-600 size-4" />;
+      return <FileText className="text-error-600 size-6" />;
     }
 
     // Fallback for unknown types
-    return <File className="text-surface-600 size-4" />;
+    return <File className="text-surface-600 size-6" />;
   };
 
   const formatFileSize = (bytes) => {
