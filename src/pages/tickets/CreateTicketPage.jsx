@@ -171,11 +171,12 @@ export const CreateTicketPage = () => {
               />
             </div>
 
-            <div className="flex items-center justify-end space-x-4 pt-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 sm:justify-end">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => navigate("/tickets")}
+                className="w-full sm:w-auto"
               >
                 Cancel
               </Button>
@@ -183,6 +184,7 @@ export const CreateTicketPage = () => {
                 type="submit"
                 loading={isSubmitting}
                 disabled={isSubmitting}
+                className="w-full sm:w-auto"
               >
                 Create Ticket
               </Button>
