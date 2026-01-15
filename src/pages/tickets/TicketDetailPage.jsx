@@ -227,7 +227,7 @@ export const TicketDetailPage = () => {
                   <option value="">Unassigned</option>
                   {agents?.map((agent) => (
                     <option key={agent._id} value={agent._id}>
-                      {agent.name} ({agent.role})
+                      {agent.name}
                     </option>
                   ))}
                 </Select>
@@ -238,9 +238,6 @@ export const TicketDetailPage = () => {
                       <span className="text-surface-900 text-sm font-medium">
                         {ticket.assignedUser.name}
                       </span>
-                      <Badge variant="secondary" size="sm">
-                        {ticket.assignedUser.role}
-                      </Badge>
                     </div>
                   </div>
                 )}
