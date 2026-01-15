@@ -47,23 +47,23 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="bg-surface-900/50 fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
+          className="bg-surface-900/70 fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
           onClick={onToggle}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`glass border-surface-200 fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white! transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
+        className={`border-surface-600 bg-surface-900 fixed inset-y-0 left-0 z-50 w-64 transform border-r transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="border-surface-200 flex h-16 items-center justify-between border-b px-2">
+          <div className="border-surface-700 flex items-center justify-between border-b px-2 py-4">
             <Link to="/" className="flex items-center space-x-2">
               <div className="bg-primary-600 flex size-8 items-center justify-center rounded-lg shadow-lg">
                 <HelpingHand className="size-5 text-white" />
               </div>
-              <span className="text-surface-900 text-lg font-semibold">
+              <span className="text-surface-100 text-lg! font-semibold">
                 HelpDesk
               </span>
             </Link>
@@ -89,10 +89,10 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`group flex items-center rounded px-3 py-2.5 font-medium transition-all duration-200 ${
+                  className={`flex items-center rounded px-3 py-2.5 font-medium transition-all duration-200 ${
                     isActive
-                      ? "bg-primary-50 text-primary-700 border-primary-600 border-r-4 shadow-sm"
-                      : "text-surface-700 hover:bg-surface-50 hover:text-surface-900"
+                      ? "bg-surface-800 text-primary-500 border-primary-600 border-r-4"
+                      : "text-surface-200 hover:bg-surface-800"
                   } `}
                   onClick={() => {
                     if (window.innerWidth < 1024) {
@@ -102,9 +102,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
                 >
                   <item.icon
                     className={`mr-3 size-5 transition-colors ${
-                      isActive
-                        ? "text-primary-600"
-                        : "text-surface-500 group-hover:text-surface-700"
+                      isActive ? "text-primary-600" : "text-surface-100"
                     }`}
                   />
                   {item.name}
@@ -117,7 +115,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
           <div className="border-surface-200 border-t p-4">
             <div className="text-surface-500 text-center text-xs">
               Role:{" "}
-              <span className="text-surface-700 font-medium capitalize">
+              <span className="text-surface-100 font-medium capitalize">
                 {userRole}
               </span>
             </div>
