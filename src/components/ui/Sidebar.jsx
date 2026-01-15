@@ -54,7 +54,7 @@ export const Sidebar = ({ isOpen, onToggle, userRole = "user" }) => {
 
       {/* Sidebar */}
       <div
-        className={`glass border-surface-200 fixed inset-y-0 left-0 z-50 w-64 transform border-r transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
+        className={`glass border-surface-200 fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white! transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
