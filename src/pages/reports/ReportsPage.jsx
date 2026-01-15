@@ -8,11 +8,9 @@ import {
   BarChart3,
   TrendingUp,
   Users,
-  Clock,
   Download,
   Calendar,
   Target,
-  Activity,
 } from "lucide-react";
 
 export const ReportsPage = () => {
@@ -127,7 +125,7 @@ export const ReportsPage = () => {
   return (
     <div className="animate-fade-in space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-surface-900 text-2xl font-bold">
             Reports & Analytics
@@ -336,7 +334,7 @@ export const ReportsPage = () => {
       {/* Ticket Trends */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-surface-900 text-lg font-semibold">
               Ticket Creation Trends
             </h2>
