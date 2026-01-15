@@ -3,11 +3,7 @@ import { api } from "../../../convex/_generated/api";
 import { Card, CardHeader, CardContent } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
-import { User } from "lucide-react";
-import { FileText } from "lucide-react";
-import { Image } from "lucide-react";
-import { Download } from "lucide-react";
-import { Paperclip } from "lucide-react";
+import { User, FileText, Image, Eye, Paperclip } from "lucide-react";
 
 export const AttachmentSection = ({ ticketId }) => {
   const attachments = useQuery(api.attachments.getAttachmentByTicket, {
@@ -101,7 +97,7 @@ export const AttachmentSection = ({ ticketId }) => {
                       size="sm"
                       onClick={() => window.open(attachment.fileUrl, "_blank")}
                     >
-                      <Download className="size-4" />
+                      <Eye className="size-4" />
                     </Button>
                   </div>
                 </div>
