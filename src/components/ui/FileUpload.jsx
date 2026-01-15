@@ -152,7 +152,7 @@ export const FileUpload = ({
                 {getFileIcon(file)}
                 <div>
                   <p className="text-surface-900 line-clamp-1 font-medium">
-                    {file.name}
+                    {file.name.substring(0, 100)}
                   </p>
                   <p className="text-surface-500 text-sm">
                     {formatFileSize(file.size)}
