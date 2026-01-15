@@ -144,7 +144,7 @@ export const UserDashboard = ({ user }) => {
               {recentTickets.slice(0, 4).map((ticket) => (
                 <div
                   key={ticket._id}
-                  className="border-surface-200 hover:bg-surface-50 flex flex-wrap gap-2 rounded-lg border p-4 transition-colors"
+                  className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
                 >
                   <div>
                     <Link to={`/tickets/${ticket._id}`} className="block">

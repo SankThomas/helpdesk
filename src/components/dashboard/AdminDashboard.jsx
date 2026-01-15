@@ -109,13 +109,13 @@ export const AdminDashboard = ({ user }) => {
       </div>
 
       {/* Status Overview */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
             <div className="flex items-center justify-between">
               <h3 className="text-surface-900 font-semibold">Recent Tickets</h3>
               <Link to="/tickets">
-                <Button variant="outline" size="sm">
+                <Button variant="primary" size="sm">
                   View All Tickets
                 </Button>
               </Link>
@@ -132,11 +132,11 @@ export const AdminDashboard = ({ user }) => {
                 {recentTickets.slice(0, 4).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className="border-surface-200 hover:bg-surface-50 flex items-start justify-between gap-2 rounded-lg border p-3 transition-colors"
+                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
                   >
-                    <div className="min-w-0 flex-1">
+                    <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h4 className="text-surface-900 truncate text-sm font-medium">
+                        <h4 className="text-surface-900 text-sm font-medium">
                           {ticket.title}
                         </h4>
                         <p className="text-surface-500 mb-2 line-clamp-2">
@@ -160,104 +160,112 @@ export const AdminDashboard = ({ user }) => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <h3 className="text-surface-900 mb-4 font-semibold">
-              Ticket Status Breakdown
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-surface-600 text-sm">Open</span>
-                <div className="flex items-center space-x-2">
-                  <div className="bg-surface-200 h-2 w-24 rounded-full">
-                    <div
-                      className="bg-error-500 h-2 rounded-full"
-                      style={{
-                        width: `${
-                          stats.totalTickets > 0
-                            ? (stats.openTickets / stats.totalTickets) * 100
-                            : 0
-                        }%`,
-                      }}
-                    />
+        <div>
+          <Card className="mb-4">
+            <CardContent className="p-6">
+              <h3 className="text-surface-900 mb-4 font-semibold">
+                Ticket Status Breakdown
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-surface-600 text-sm">Open</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                      <div
+                        className="bg-error-500 h-2 rounded-full"
+                        style={{
+                          width: `${
+                            stats.totalTickets > 0
+                              ? (stats.openTickets / stats.totalTickets) * 100
+                              : 0
+                          }%`,
+                        }}
+                      />
+                    </div>
+                    <span className="text-surface-900 text-sm font-medium">
+                      {stats.openTickets}
+                    </span>
                   </div>
-                  <span className="text-surface-900 text-sm font-medium">
-                    {stats.openTickets}
-                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-surface-600 text-sm">Pending</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                      <div
+                        className="bg-warning-500 h-2 rounded-full"
+                        style={{
+                          width: `${
+                            stats.totalTickets > 0
+                              ? (stats.pendingTickets / stats.totalTickets) *
+                                100
+                              : 0
+                          }%`,
+                        }}
+                      />
+                    </div>
+                    <span className="text-surface-900 text-sm font-medium">
+                      {stats.pendingTickets}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-surface-600 text-sm">Resolved</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                      <div
+                        className="bg-success-500 h-2 rounded-full"
+                        style={{
+                          width: `${
+                            stats.totalTickets > 0
+                              ? (stats.resolvedTickets / stats.totalTickets) *
+                                100
+                              : 0
+                          }%`,
+                        }}
+                      />
+                    </div>
+                    <span className="text-surface-900 text-sm font-medium">
+                      {stats.resolvedTickets}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-surface-600 text-sm">Pending</span>
-                <div className="flex items-center space-x-2">
-                  <div className="bg-surface-200 h-2 w-24 rounded-full">
-                    <div
-                      className="bg-warning-500 h-2 rounded-full"
-                      style={{
-                        width: `${
-                          stats.totalTickets > 0
-                            ? (stats.pendingTickets / stats.totalTickets) * 100
-                            : 0
-                        }%`,
-                      }}
-                    />
-                  </div>
-                  <span className="text-surface-900 text-sm font-medium">
-                    {stats.pendingTickets}
-                  </span>
-                </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card>
+            <CardHeader>
+              <h3 className="text-surface-900 font-semibold">Quick Actions</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-2">
+                <Link to="/tickets">
+                  <Button
+                    variant="outline"
+                    to="/tickets"
+                    className="w-full justify-center"
+                  >
+                    View All Tickets
+                  </Button>
+                </Link>
+
+                <Link to="/tickets?filter=unassigned">
+                  <Button variant="outline" className="w-full justify-center">
+                    Unassigned Tickets
+                  </Button>
+                </Link>
+
+                <Link to="/users">
+                  <Button variant="outline" className="w-full justify-center">
+                    Manage Users
+                  </Button>
+                </Link>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-surface-600 text-sm">Resolved</span>
-                <div className="flex items-center space-x-2">
-                  <div className="bg-surface-200 h-2 w-24 rounded-full">
-                    <div
-                      className="bg-success-500 h-2 rounded-full"
-                      style={{
-                        width: `${
-                          stats.totalTickets > 0
-                            ? (stats.resolvedTickets / stats.totalTickets) * 100
-                            : 0
-                        }%`,
-                      }}
-                    />
-                  </div>
-                  <span className="text-surface-900 text-sm font-medium">
-                    {stats.resolvedTickets}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-
-      {/* Quick Actions */}
-      <Card>
-        <CardHeader>
-          <h3 className="text-surface-900 font-semibold">Quick Actions</h3>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <Link to="/tickets">
-              <Button to="/tickets" className="justify-center">
-                View All Tickets
-              </Button>
-            </Link>
-
-            <Link to="/tickets?filter=unassigned">
-              <Button variant="outline" className="justify-center">
-                Unassigned Tickets
-              </Button>
-            </Link>
-
-            <Link to="/users">
-              <Button variant="outline" className="justify-center">
-                Manage Users
-              </Button>
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
