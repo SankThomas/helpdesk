@@ -69,7 +69,11 @@ export const Navbar = ({ onMenuClick, user }) => {
                 {isAdmin && (
                   <div className="border-surface-300 border-y py-4">
                     {/* Add handleNavigate to close dropdown */}
-                    <Link to="/settings" className="flex items-center gap-2">
+                    <Link
+                      to="/settings"
+                      onClick={() => setDropdownMenu(false)}
+                      className="flex items-center gap-2"
+                    >
                       <Cog className="size-4" /> Settings
                     </Link>
                   </div>
