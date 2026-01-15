@@ -1,19 +1,21 @@
-import MDEditor from "@uiw/react-md-editor";
 import { useMutation, useQuery } from "convex/react";
 import { format } from "date-fns";
 import { Clock, Lock, MessageCircle, Send, Trash2, User } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { api } from "../../../convex/_generated/api";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader } from "../ui/Card";
+import TipTapEditor from "../ui/TipTapEditor";
 // import { Textarea } from "../ui/Textarea";
 
 export const CommentSection = ({ ticketId, currentUser }) => {
   const [comment, setComment] = useState("");
   const [isInternal, setIsInternal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const editorRef = useRef(null);
 
   // Get comments for this ticket
   const comments = useQuery(api.comments.getCommentsByTicket, {
@@ -25,6 +27,10 @@ export const CommentSection = ({ ticketId, currentUser }) => {
   const deleteComment = useMutation(api.comments.deleteComment);
 
   const canAddInternalComments = ["agent", "admin"].includes(currentUser.role);
+
+  const handleAddComment = (value) => {
+    setComment(value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,17 +118,6 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                         </Badge>
                       )}
 
-                      {currentUser.role === "admin" && (
-                        <Button
-                          size="sm"
-                          variant="danger"
-                          className="opacity-0 group-hover:opacity-100"
-                          onClick={() => handleDeleteComment(comment._id)}
-                        >
-                          <Trash2 className="size-4" />
-                        </Button>
-                      )}
-
                       {comment.isInternal && (
                         <Badge
                           variant="warning"
@@ -133,22 +128,31 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                           <span>Internal</span>
                         </Badge>
                       )}
+
+                      {currentUser.role === "admin" && (
+                        <Button
+                          size="sm"
+                          variant="danger"
+                          className="opacity-0 group-hover:opacity-100"
+                          onClick={() => handleDeleteComment(comment._id)}
+                        >
+                          <Trash2 className="size-4" />
+                        </Button>
+                      )}
                     </div>
                     <div className="text-surface-500 flex items-center space-x-1 text-sm">
                       <Clock className="size-3" />
                       <span>{format(new Date(comment.createdAt), "PPp")}</span>
                     </div>
                   </div>
-                  <div className="prose max-w-none">
-                    {/* <p className="text-surface-700 whitespace-pre-wrap">
-                      {comment.content}
-                    </p> */}
-                    {/* TODO: Research React Markdown - https://www.windmill.dev/blog/using-markdown-in-react
-                     */}
-                    <div data-color-mode="light">
-                      <MDEditor.Markdown source={comment.content} />
-                    </div>
-                  </div>
+                  <div
+                    className="prose max-w-none p-6"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        comment.content ||
+                        '<p class="text-surface-500">No comment</p>',
+                    }}
+                  />
                 </div>
               ))}
             </div>
@@ -165,8 +169,16 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                 required
               /> */}
 
-              <div data-color-mode="light">
-                <MDEditor height={240} value={comment} onChange={setComment} />
+              <div>
+                <p className="text-surface-800 mb-2 text-lg font-bold">
+                  Add a comment
+                </p>
+                <TipTapEditor
+                  ref={editorRef}
+                  content={comment}
+                  onChange={handleAddComment}
+                  placeholder="Add a comment..."
+                />
               </div>
 
               <div className="flex items-center justify-between">
