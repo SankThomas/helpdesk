@@ -127,12 +127,10 @@ export const ReportsPage = () => {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-surface-900 text-2xl font-bold">
+          <h1 className="text-2xl font-bold text-gray-900">
             Reports & Analytics
           </h1>
-          <p className="text-surface-600">
-            Track performance and analyze trends
-          </p>
+          <p className="text-gray-600">Track performance and analyze trends</p>
         </div>
         <Button onClick={handleExport} className="flex items-center space-x-2">
           <Download className="size-4" />
@@ -181,10 +179,10 @@ export const ReportsPage = () => {
             <div className="flex items-center">
               <BarChart3 className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Total Tickets
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {metrics.totalTickets}
                 </p>
               </div>
@@ -195,12 +193,12 @@ export const ReportsPage = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Target className="text-success-600 size-8" />
+              <Target className="size-8 text-green-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Resolution Rate
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {metrics.resolutionRate}%
                 </p>
               </div>
@@ -213,10 +211,10 @@ export const ReportsPage = () => {
             <div className="flex items-center">
               <Users className="text-secondary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Active Users
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {metrics.activeUsers}
                 </p>
               </div>
@@ -229,7 +227,7 @@ export const ReportsPage = () => {
         {/* Status Distribution */}
         <Card>
           <CardHeader>
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Ticket Status Distribution
             </h2>
           </CardHeader>
@@ -241,10 +239,10 @@ export const ReportsPage = () => {
                     ? Math.round((count / metrics.totalTickets) * 100)
                     : 0;
                 const colors = {
-                  open: "bg-error-500",
-                  pending: "bg-warning-500",
-                  resolved: "bg-success-500",
-                  closed: "bg-surface-400",
+                  open: "bg-rose-500",
+                  pending: "bg-red-500",
+                  resolved: "bg-green-500",
+                  closed: "bg-gray-400",
                 };
 
                 return (
@@ -256,18 +254,18 @@ export const ReportsPage = () => {
                       <div
                         className={`size-3 rounded-full ${colors[status]}`}
                       />
-                      <span className="text-surface-900 font-medium capitalize">
+                      <span className="font-medium text-gray-900 capitalize">
                         {status}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="bg-surface-200 h-2 w-24 rounded-full">
+                      <div className="h-2 w-24 rounded-full bg-gray-200">
                         <div
                           className={`h-2 rounded-full ${colors[status]}`}
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
-                      <span className="text-surface-900 w-12 text-right text-sm font-medium">
+                      <span className="w-12 text-right text-sm font-medium text-gray-900">
                         {count} ({percentage}%)
                       </span>
                     </div>
@@ -281,7 +279,7 @@ export const ReportsPage = () => {
         {/* Priority Distribution */}
         <Card>
           <CardHeader>
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Priority Distribution
             </h2>
           </CardHeader>
@@ -293,10 +291,10 @@ export const ReportsPage = () => {
                     ? Math.round((count / metrics.totalTickets) * 100)
                     : 0;
                 const colors = {
-                  low: "bg-surface-400",
-                  medium: "bg-warning-500",
-                  high: "bg-error-500",
-                  urgent: "bg-error-600",
+                  low: "bg-gray-400",
+                  medium: "bg-red-500",
+                  high: "bg-rose-500",
+                  urgent: "bg-rose-600",
                 };
 
                 return (
@@ -308,18 +306,18 @@ export const ReportsPage = () => {
                       <div
                         className={`size-3 rounded-full ${colors[priority]}`}
                       />
-                      <span className="text-surface-900 font-medium capitalize">
+                      <span className="font-medium text-gray-900 capitalize">
                         {priority}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="bg-surface-200 h-2 w-24 rounded-full">
+                      <div className="h-2 w-24 rounded-full bg-gray-200">
                         <div
                           className={`h-2 rounded-full ${colors[priority]}`}
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
-                      <span className="text-surface-900 w-12 text-right text-sm font-medium">
+                      <span className="w-12 text-right text-sm font-medium text-gray-900">
                         {count} ({percentage}%)
                       </span>
                     </div>
@@ -335,12 +333,12 @@ export const ReportsPage = () => {
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Ticket Creation Trends
             </h2>
             <div className="flex items-center space-x-2">
-              <TrendingUp className="text-success-600 size-4" />
-              <span className="text-success-600 text-sm font-medium">
+              <TrendingUp className="size-4 text-green-600" />
+              <span className="text-sm font-medium text-green-600">
                 {dailyTickets.reduce((sum, day) => sum + day.count, 0)} tickets
                 this week
               </span>
@@ -362,14 +360,14 @@ export const ReportsPage = () => {
                       minHeight: day.count > 0 ? "8px" : "2px",
                     }}
                   />
-                  <span className="text-surface-600 text-xs font-medium">
+                  <span className="text-xs font-medium text-gray-600">
                     {day.date}
                   </span>
-                  <span className="text-surface-500 text-xs">{day.count}</span>
+                  <span className="text-xs text-gray-500">{day.count}</span>
                 </div>
               ))}
             </div>
-            <div className="text-surface-500 text-center text-sm">
+            <div className="text-center text-sm text-gray-500">
               Daily ticket creation over the last 7 days
             </div>
           </div>

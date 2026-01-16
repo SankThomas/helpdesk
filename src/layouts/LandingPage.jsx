@@ -42,7 +42,7 @@ export const LandingPage = () => {
       <main className="mx-auto flex h-screen max-w-4xl items-center justify-center text-center">
         <article className="space-y-6">
           <h1 className="text-4xl! lg:text-6xl!">Helpdesk by Sankara</h1>
-          <p className="text-surface-500 text-lg! lg:text-xl!">
+          <p className="text-lg! text-gray-500 lg:text-xl!">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et hic amet
             porro quibusdam, asperiores cupiditate optio ullam inventore
             molestias eaque? Veniam molestiae expedita aut quaerat sit ad sed

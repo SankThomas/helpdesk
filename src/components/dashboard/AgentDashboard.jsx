@@ -47,8 +47,8 @@ export const AgentDashboard = ({ user }) => {
     <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-surface-900 text-2xl font-bold">Agent Dashboard</h1>
-        <p className="text-surface-600">Manage customer support tickets</p>
+        <h1 className="text-2xl font-bold text-gray-900">Agent Dashboard</h1>
+        <p className="text-gray-600">Manage customer support tickets</p>
       </div>
 
       {/* Stats */}
@@ -58,10 +58,10 @@ export const AgentDashboard = ({ user }) => {
             <div className="flex items-center">
               <Ticket className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Total Tickets
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.total}
                 </p>
               </div>
@@ -72,12 +72,12 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <User className="text-success-600 size-8" />
+              <User className="size-8 text-green-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Assigned to Me
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.assigned}
                 </p>
               </div>
@@ -88,12 +88,10 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="text-warning-600 size-8" />
+              <Clock className="size-8 text-red-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
-                  Unassigned
-                </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-sm font-medium text-gray-600">Unassigned</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.unassigned}
                 </p>
               </div>
@@ -104,10 +102,10 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <AlertTriangle className="text-error-600 size-8" />
+              <AlertTriangle className="size-8 text-rose-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">Urgent</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-sm font-medium text-gray-600">Urgent</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.urgent}
                 </p>
               </div>
@@ -121,7 +119,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardHeader>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-surface-900 text-lg font-semibold">
+              <h2 className="text-lg font-semibold text-gray-900">
                 Unassigned Tickets
               </h2>
               <Link to="/tickets?filter=unassigned">
@@ -134,25 +132,25 @@ export const AgentDashboard = ({ user }) => {
           <CardContent>
             {unassignedTickets.length === 0 ? (
               <div className="py-8 text-center">
-                <Ticket className="text-surface-400 mx-auto mb-3 size-12" />
-                <p className="text-surface-500">No unassigned tickets</p>
+                <Ticket className="mx-auto mb-3 size-12 text-gray-400" />
+                <p className="text-gray-500">No unassigned tickets</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {unassignedTickets.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
+                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-green-100 bg-green-50 hover:bg-green-100" : ticket.status === "pending" ? " border-red-100 bg-red-50 hover:bg-red-100" : ticket.status === "open" ? "border-rose-100 bg-rose-50 hover:bg-rose-100" : ticket.status === "closed" ? "border-gray-100 bg-gray-50 hover:bg-gray-100" : "border-gray-100 bg-gray-50 hover:bg-gray-100"}`}
                   >
                     <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="text-surface-900 mb-1 line-clamp-2 font-medium">
+                        <h3 className="mb-1 line-clamp-2 font-medium text-gray-900">
                           {ticket.title}
                         </h3>
-                        <p className="text-surface-500 mb-2 line-clamp-2">
+                        <p className="mb-2 line-clamp-2 text-gray-500">
                           {ticket.description}
                         </p>
-                        <p className="text-surface-500 text-sm">
+                        <p className="text-sm text-gray-500">
                           By {ticket.user?.name}
                         </p>
                       </Link>
@@ -176,7 +174,7 @@ export const AgentDashboard = ({ user }) => {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="text-surface-900 text-lg font-semibold">
+              <h2 className="text-lg font-semibold text-gray-900">
                 My Tickets
               </h2>
 
@@ -190,25 +188,25 @@ export const AgentDashboard = ({ user }) => {
           <CardContent>
             {(myTickets?.length || 0) === 0 ? (
               <div className="py-8 text-center">
-                <User className="text-surface-400 mx-auto mb-3 size-12" />
-                <p className="text-surface-500">No assigned tickets</p>
+                <User className="mx-auto mb-3 size-12 text-gray-400" />
+                <p className="text-gray-500">No assigned tickets</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {myTickets?.slice(0, 5).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
+                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-green-100 bg-green-50 hover:bg-green-100" : ticket.status === "pending" ? " border-red-100 bg-red-50 hover:bg-red-100" : ticket.status === "open" ? "border-rose-100 bg-rose-50 hover:bg-rose-100" : ticket.status === "closed" ? "border-gray-100 bg-gray-50 hover:bg-gray-100" : "border-gray-100 bg-gray-50 hover:bg-gray-100"}`}
                   >
                     <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h3 className="text-surface-900 mb-1 line-clamp-2 font-medium">
+                        <h3 className="mb-1 line-clamp-2 font-medium text-gray-900">
                           {ticket.title}
                         </h3>
-                        <p className="text-surface-500 mb-2 line-clamp-2">
+                        <p className="mb-2 line-clamp-2 text-gray-500">
                           {ticket.description}
                         </p>
-                        <p className="text-surface-500 text-sm">
+                        <p className="text-sm text-gray-500">
                           By {ticket.user?.name}
                         </p>
                       </Link>

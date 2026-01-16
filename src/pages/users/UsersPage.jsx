@@ -80,8 +80,8 @@ export const UsersPage = () => {
     <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-surface-900 text-2xl font-bold">User Management</h1>
-        <p className="text-surface-600">Manage user accounts and permissions</p>
+        <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
+        <p className="text-gray-600">Manage user accounts and permissions</p>
       </div>
 
       {/* Stats */}
@@ -91,8 +91,8 @@ export const UsersPage = () => {
             <div className="flex items-center">
               <Users className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 font-medium">Total Users</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="font-medium text-gray-600">Total Users</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.total}
                 </p>
               </div>
@@ -105,8 +105,8 @@ export const UsersPage = () => {
             <div className="flex items-center">
               <Shield className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 font-medium">Admins</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="font-medium text-gray-600">Admins</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.admins}
                 </p>
               </div>
@@ -119,8 +119,8 @@ export const UsersPage = () => {
             <div className="flex items-center">
               <UserCheck className="text-secondary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 font-medium">Agents</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="font-medium text-gray-600">Agents</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.agents}
                 </p>
               </div>
@@ -131,10 +131,10 @@ export const UsersPage = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <UserX className="text-surface-600 size-8" />
+              <UserX className="size-8 text-gray-600" />
               <div className="ml-4">
-                <p className="text-surface-600 font-medium">Users</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="font-medium text-gray-600">Users</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.users}
                 </p>
               </div>
@@ -148,7 +148,7 @@ export const UsersPage = () => {
         <CardContent className="p-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="relative">
-              <Search className="text-surface-400 absolute top-1/2 left-3 size-4 -translate-y-1/2 transform" />
+              <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 transform text-gray-400" />
               <Input
                 placeholder="Search users..."
                 value={searchTerm}
@@ -184,7 +184,7 @@ export const UsersPage = () => {
       <Card className="glass">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Users ({filteredUsers.length})
             </h2>
             <Button
@@ -203,11 +203,11 @@ export const UsersPage = () => {
             </div>
           ) : filteredUsers.length === 0 ? (
             <div className="py-12 text-center">
-              <Users className="text-surface-400 mx-auto mb-4 size-12" />
-              <h3 className="text-surface-900 mb-2 text-lg font-medium">
+              <Users className="mx-auto mb-4 size-12 text-gray-400" />
+              <h3 className="mb-2 text-lg font-medium text-gray-900">
                 No users found
               </h3>
-              <p className="text-surface-500">
+              <p className="text-gray-500">
                 Try adjusting your search terms or filters
               </p>
             </div>
@@ -215,29 +215,29 @@ export const UsersPage = () => {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-surface-200 border-b">
-                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
+                  <tr className="border-b border-gray-200">
+                    <th className="px-2 py-3 text-left font-medium text-gray-900">
                       User
                     </th>
-                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
+                    <th className="px-2 py-3 text-left font-medium text-gray-900">
                       Email
                     </th>
-                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
+                    <th className="px-2 py-3 text-left font-medium text-gray-900">
                       Role
                     </th>
-                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
+                    <th className="px-2 py-3 text-left font-medium text-gray-900">
                       Joined
                     </th>
-                    <th className="text-surface-900 px-2 py-3 text-left font-medium">
+                    <th className="px-2 py-3 text-left font-medium text-gray-900">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-surface-200 divide-y">
+                <tbody className="divide-y divide-gray-200">
                   {filteredUsers.map((user) => (
                     <tr
                       key={user._id}
-                      className="hover:bg-surface-50 transition-colors"
+                      className="transition-colors hover:bg-gray-50"
                     >
                       <td className="px-2 py-4">
                         <div className="flex items-center space-x-3">
@@ -245,21 +245,19 @@ export const UsersPage = () => {
                             {user.name.charAt(0).toUpperCase()}
                           </div>
                           <div>
-                            <p className="text-surface-900 truncate font-medium">
+                            <p className="truncate font-medium text-gray-900">
                               {user.name}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="text-surface-600 px-2 py-4">
-                        {user.email}
-                      </td>
+                      <td className="px-2 py-4 text-gray-600">{user.email}</td>
                       <td className="px-2 py-4">
                         <Badge variant={roleColors[user.role]} size="sm">
                           {user.role}
                         </Badge>
                       </td>
-                      <td className="text-surface-600 truncate px-2 py-4">
+                      <td className="truncate px-2 py-4 text-gray-600">
                         {format(new Date(user.createdAt), "MMM do, yyyy")}
                       </td>
                       <td className="px-2 py-4">

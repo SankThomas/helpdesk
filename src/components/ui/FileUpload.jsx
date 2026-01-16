@@ -83,7 +83,7 @@ export const FileUpload = ({
     }
 
     if (file.type.includes("pdf") || file.type.includes("document")) {
-      return <FileText className="text-error-600 size-9" />;
+      return <FileText className="size-9 text-rose-600" />;
     }
 
     return <File className="size-9" />;
@@ -103,7 +103,7 @@ export const FileUpload = ({
         className={`relative rounded-lg border-2 border-dashed p-6 text-center transition-all duration-200 ${
           dragActive
             ? "border-primary-500 bg-primary-50"
-            : "border-surface-300 hover:border-primary-400 hover:bg-surface-50"
+            : "hover:border-primary-400 border-gray-300 hover:bg-gray-50"
         } `}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -120,12 +120,12 @@ export const FileUpload = ({
         />
 
         <div className="space-y-3">
-          <Upload className="text-surface-400 mx-auto size-8" />
+          <Upload className="mx-auto size-8 text-gray-400" />
           <div>
-            <p className="text-surface-700 font-medium">
+            <p className="font-medium text-gray-700">
               Drop files here or click to browse
             </p>
-            <p className="text-surface-500 text-sm">
+            <p className="text-sm text-gray-500">
               Maximum file size: {maxSize / 1024 / 1024}MB
             </p>
           </div>
@@ -142,19 +142,19 @@ export const FileUpload = ({
 
       {selectedFiles.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-surface-900 font-medium">Selected Files:</h4>
+          <h4 className="font-medium text-gray-900">Selected Files:</h4>
           {selectedFiles.map((file, index) => (
             <div
               key={index}
-              className="bg-surface-50 border-surface-200 flex items-center justify-between rounded-lg border p-3"
+              className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3"
             >
               <div className="flex items-center space-x-3">
                 {getFileIcon(file)}
                 <div>
-                  <p className="text-surface-900 line-clamp-1 font-medium">
+                  <p className="line-clamp-1 font-medium text-gray-900">
                     {file.name.substring(0, 100)}
                   </p>
-                  <p className="text-surface-500 text-sm">
+                  <p className="text-sm text-gray-500">
                     {formatFileSize(file.size)}
                   </p>
                 </div>

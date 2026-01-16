@@ -20,18 +20,18 @@ export const AttachmentSection = ({ ticketId }) => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="border-surface-200 size-12 rounded border object-cover"
+          className="size-12 rounded border border-gray-200 object-cover"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="text-error-600 size-6" />;
+      return <FileText className="size-6 text-rose-600" />;
     }
 
     // Fallback for unknown types
-    return <File className="text-surface-600 size-6" />;
+    return <File className="size-6 text-gray-600" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -47,7 +47,7 @@ export const AttachmentSection = ({ ticketId }) => {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <h2 className="text-surface-900 font-semibold">Attachments</h2>
+            <h2 className="font-semibold text-gray-900">Attachments</h2>
             {attachments && (
               <Badge variant="secondary" size="sm">
                 {attachments.length}
@@ -65,23 +65,23 @@ export const AttachmentSection = ({ ticketId }) => {
             </div>
           ) : attachments.length === 0 ? (
             <div className="py-8 text-center">
-              <Paperclip className="text-surface-400 mx-auto mb-3 size-12" />
-              <p className="text-surface-500">No attachments yet</p>
+              <Paperclip className="mx-auto mb-3 size-12 text-gray-400" />
+              <p className="text-gray-500">No attachments yet</p>
             </div>
           ) : (
             <div className="space-y-3">
               {attachments.map((attachment) => (
                 <div
                   key={attachment._id}
-                  className="border-surface-200 hover:bg-surface-50 flex items-center justify-between rounded-lg border p-2 transition-colors"
+                  className="flex items-center justify-between rounded-lg border border-gray-200 p-2 transition-colors hover:bg-gray-50"
                 >
                   <div className="flex min-w-0 flex-1 items-center space-x-3">
                     {getFileIcon(attachment)}
                     <div className="min-w-0 flex-1">
-                      <p className="text-surface-900 truncate font-medium">
+                      <p className="truncate font-medium text-gray-900">
                         {attachment.fileName}
                       </p>
-                      <div className="text-surface-500 flex flex-wrap items-center space-x-4 text-sm">
+                      <div className="flex flex-wrap items-center space-x-4 text-sm text-gray-500">
                         <span>{formatFileSize(attachment.fileSize)}</span>
                         <div className="flex items-center space-x-1">
                           <User className="size-4" />

@@ -24,7 +24,7 @@ export const Navbar = ({ onMenuClick, user }) => {
   }, []);
 
   return (
-    <header className="glass border-surface-200 sticky top-0 z-40 border-b">
+    <header className="glass sticky top-0 z-40 border-b border-gray-200">
       <div className="flex h-16 items-center justify-between px-2">
         <div className="flex items-center space-x-4">
           <Button
@@ -61,13 +61,13 @@ export const Navbar = ({ onMenuClick, user }) => {
               <div className="glass animate-bounce-in absolute right-0 z-50 mt-2 w-72 rounded-xl bg-white! p-4 shadow-xl">
                 <div className="pb-2">
                   <h4 className="text-base!">{user?.name}</h4>
-                  <small className="text-surface-500 text-sm!">
+                  <small className="text-sm! text-gray-500">
                     Role: {user?.role}
                   </small>
                 </div>
 
                 {isAdmin && (
-                  <div className="border-surface-300 border-y py-4">
+                  <div className="border-y border-gray-300 py-4">
                     {/* Add handleNavigate to close dropdown */}
                     <Link
                       to="/settings"
@@ -80,7 +80,7 @@ export const Navbar = ({ onMenuClick, user }) => {
                 )}
 
                 <div
-                  className={`border-surface-300 py-4 ${!isAdmin && "border-t"}`}
+                  className={`border-gray-300 py-4 ${!isAdmin && "border-t"}`}
                 >
                   <SignOutButton>
                     <div className="flex cursor-pointer items-center gap-2">

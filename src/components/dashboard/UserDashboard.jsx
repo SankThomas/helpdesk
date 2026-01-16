@@ -40,10 +40,8 @@ export const UserDashboard = ({ user }) => {
     <div className="animate-fade-in space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h1 className="text-surface-900 text-2xl font-bold">
-            Your Dashboard
-          </h1>
-          <p className="text-surface-600">Manage your support tickets</p>
+          <h1 className="text-2xl font-bold text-gray-900">Your Dashboard</h1>
+          <p className="text-gray-600">Manage your support tickets</p>
         </div>
 
         <Link to="/tickets/new">
@@ -61,10 +59,10 @@ export const UserDashboard = ({ user }) => {
             <div className="flex items-center">
               <Ticket className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Total Tickets
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.total}
                 </p>
               </div>
@@ -75,12 +73,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="text-error-600 size-8" />
+              <Clock className="size-8 text-rose-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">Open</p>
-                <p className="text-surface-900 text-2xl font-bold">
-                  {stats.open}
-                </p>
+                <p className="text-sm font-medium text-gray-600">Open</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.open}</p>
               </div>
             </div>
           </CardContent>
@@ -89,10 +85,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Clock className="text-warning-600 size-8" />
+              <Clock className="size-8 text-red-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">Pending</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-sm font-medium text-gray-600">Pending</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.pending}
                 </p>
               </div>
@@ -103,10 +99,10 @@ export const UserDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <CheckCircle className="text-success-600 size-8" />
+              <CheckCircle className="size-8 text-green-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">Resolved</p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-sm font-medium text-gray-600">Resolved</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.resolved}
                 </p>
               </div>
@@ -119,7 +115,7 @@ export const UserDashboard = ({ user }) => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Recent Tickets
             </h2>
             <Link to="/tickets">
@@ -133,8 +129,8 @@ export const UserDashboard = ({ user }) => {
         <CardContent>
           {recentTickets.length === 0 ? (
             <div className="py-8 text-center">
-              <Ticket className="text-surface-400 mx-auto mb-3 size-12" />
-              <p className="text-surface-500 mb-4">No tickets yet</p>
+              <Ticket className="mx-auto mb-3 size-12 text-gray-400" />
+              <p className="mb-4 text-gray-500">No tickets yet</p>
               <Link to="/tickets/new">
                 <Button>Create your first ticket</Button>
               </Link>
@@ -144,19 +140,19 @@ export const UserDashboard = ({ user }) => {
               {recentTickets.slice(0, 4).map((ticket) => (
                 <div
                   key={ticket._id}
-                  className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
+                  className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-green-100 bg-green-50 hover:bg-green-100" : ticket.status === "pending" ? " border-red-100 bg-red-50 hover:bg-red-100" : ticket.status === "open" ? "border-rose-100 bg-rose-50 hover:bg-rose-100" : ticket.status === "closed" ? "border-gray-100 bg-gray-50 hover:bg-gray-100" : "border-gray-100 bg-gray-50 hover:bg-gray-100"}`}
                 >
                   <div>
                     <Link to={`/tickets/${ticket._id}`} className="block">
-                      <h3 className="text-surface-900 mb-2 font-medium">
+                      <h3 className="mb-2 font-medium text-gray-900">
                         {ticket.title}
                       </h3>
-                      <p className="text-surface-500 line-clamp-2 text-sm">
+                      <p className="line-clamp-2 text-sm text-gray-500">
                         {ticket.description}
                       </p>
                     </Link>
 
-                    <div className="text-surface-500 mt-4 flex flex-wrap items-center gap-1 space-x-4 text-sm">
+                    <div className="mt-4 flex flex-wrap items-center gap-1 space-x-4 text-sm text-gray-500">
                       <span>By {ticket.user?.name}</span>
                       {ticket.assignedUser && (
                         <span>Assigned to {ticket.assignedUser.name}</span>

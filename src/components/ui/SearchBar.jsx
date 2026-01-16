@@ -84,7 +84,7 @@ export const SearchBar = ({ currentUser }) => {
   return (
     <div className="relative">
       <div className="relative">
-        <Search className="text-surface-400 absolute top-1/2 left-3 size-4 -translate-y-1/2 transform" />
+        <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 transform text-gray-400" />
         <input
           ref={inputRef}
           type="text"
@@ -96,7 +96,7 @@ export const SearchBar = ({ currentUser }) => {
             setSelectedIndex(-1);
           }}
           onFocus={() => setIsOpen(true)}
-          className="border-surface-300 text-surface-900 placeholder:text-surface-400 focus:border-primary-500 focus:ring-primary-500 w-full rounded-lg border bg-white py-2 pr-10 pl-10 transition-all duration-200 focus:ring-1 focus:outline-none"
+          className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-lg border border-gray-300 bg-white py-2 pr-10 pl-10 text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus:ring-1 focus:outline-none"
         />
         {query && (
           <button
@@ -104,7 +104,7 @@ export const SearchBar = ({ currentUser }) => {
               setQuery("");
               setIsOpen(false);
             }}
-            className="text-surface-400 hover:text-surface-600 absolute top-1/2 right-3 -translate-y-1/2 transform"
+            className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400 hover:text-gray-600"
           >
             <X className="size-4" />
           </button>
@@ -112,13 +112,13 @@ export const SearchBar = ({ currentUser }) => {
       </div>
 
       {isOpen && query.trim() && (
-        <div className="border-surface-200 absolute top-full right-0 left-0 z-50 mt-2 max-h-96 overflow-y-auto rounded-lg border bg-white shadow-xl">
+        <div className="absolute top-full right-0 left-0 z-50 mt-2 max-h-96 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-xl">
           {!searchResults ? (
             <div className="p-4 text-center">
               <div className="border-primary-600 mx-auto size-6 animate-spin rounded-full border-b-2"></div>
             </div>
           ) : searchResults.length === 0 ? (
-            <div className="text-surface-500 p-4 text-center">
+            <div className="p-4 text-center text-gray-500">
               No tickets found for "{query}"
             </div>
           ) : (
@@ -129,13 +129,13 @@ export const SearchBar = ({ currentUser }) => {
                   className={`cursor-pointer px-2 py-3 transition-colors ${
                     index === selectedIndex
                       ? "bg-primary-50"
-                      : "hover:bg-surface-50"
+                      : "hover:bg-gray-50"
                   } `}
                   onClick={() => handleResultClick(ticket._id)}
                 >
                   <div className="flex items-start justify-between">
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-surface-900 truncate font-medium">
+                      <h4 className="truncate font-medium text-gray-900">
                         {ticket.title}
                       </h4>
 
@@ -151,10 +151,10 @@ export const SearchBar = ({ currentUser }) => {
                         </Badge>
                       </div>
 
-                      <p className="text-surface-600 mt-1 truncate text-sm">
+                      <p className="mt-1 truncate text-sm text-gray-600">
                         {ticket.description}
                       </p>
-                      <div className="text-surface-500 mt-2 flex items-center space-x-3 text-xs">
+                      <div className="mt-2 flex items-center space-x-3 text-xs text-gray-500">
                         <div className="flex items-center space-x-1">
                           <User className="size-3" />
                           <span>{ticket.user?.name}</span>

@@ -11,7 +11,7 @@ export const SignInPage = () => {
       <div className="space-y-6">
         <SignIn />
 
-        <p className="text-surface-600 text-center text-sm">
+        <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
           <Link
             to="/sign-up"

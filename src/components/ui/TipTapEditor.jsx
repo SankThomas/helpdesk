@@ -72,7 +72,7 @@ const TipTapEditor = forwardRef(
     return (
       <div className="w-full">
         {/* Toolbar */}
-        <div className="border-surface-200 bg-surface-50 border-b p-2">
+        <div className="border-b border-gray-200 bg-gray-50 p-2">
           <div className="flex flex-wrap items-center gap-1">
             <ToolbarButton
               onClick={() => editor.chain().focus().toggleBold().run()}
@@ -180,7 +180,7 @@ const TipTapEditor = forwardRef(
         <EditorContent editor={editor} />
 
         {/* Editor footer */}
-        <div className="border-surface-200 bg-surface-50 text-surface-500 border-t p-2 text-xs">
+        <div className="border-t border-gray-200 bg-gray-50 p-2 text-xs text-gray-500">
           <div className="flex justify-between">
             <span>
               {editor.storage.characterCount.characters()} characters ,{" "}

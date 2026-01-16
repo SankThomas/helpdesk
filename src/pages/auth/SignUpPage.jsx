@@ -11,7 +11,7 @@ export const SignUpPage = () => {
       <div className="space-y-6">
         <SignUp />
 
-        <p className="text-surface-600 text-center text-sm">
+        <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
           <Link
             to="/sign-in"

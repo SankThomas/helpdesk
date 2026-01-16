@@ -1,10 +1,10 @@
 const variants = {
-  default: "bg-surface-100 text-surface-800",
+  default: "bg-gray-100 text-gray-800",
   primary: "bg-primary-100 text-primary-800",
   secondary: "bg-secondary-100 text-secondary-800",
-  success: "bg-success-100 text-success-800",
-  warning: "bg-warning-100 text-warning-800",
-  error: "bg-error-100 text-error-800",
+  success: "bg-green-100 text-green-800",
+  warning: "bg-red-100 text-red-800",
+  error: "bg-rose-100 text-rose-800",
 };
 
 const sizes = {

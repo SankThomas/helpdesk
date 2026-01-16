@@ -89,10 +89,10 @@ export const TicketListPage = () => {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h1 className="text-surface-900 text-2xl font-bold">
+          <h1 className="text-2xl font-bold text-gray-900">
             {currentUser.role === "user" ? "My Tickets" : "All Tickets"}
           </h1>
-          <p className="text-surface-600">
+          <p className="text-gray-600">
             {currentUser.role === "user"
               ? "Manage your support tickets"
               : "Manage customer support tickets"}
@@ -113,7 +113,7 @@ export const TicketListPage = () => {
         <CardContent className="p-3!">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             <div className="relative">
-              <Search className="text-surface-400 absolute top-1/2 left-3 size-4 -translate-y-1/2 transform" />
+              <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 transform text-gray-400" />
               <Input
                 placeholder="Search tickets..."
                 value={searchTerm}
@@ -163,10 +163,10 @@ export const TicketListPage = () => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               {searchTerm ? "Search Results" : "Tickets"}
             </h2>
-            <div className="text-surface-600 text-sm">
+            <div className="text-sm text-gray-600">
               {displayTickets?.length || 0} tickets
             </div>
           </div>
@@ -178,11 +178,11 @@ export const TicketListPage = () => {
             </div>
           ) : displayTickets.length === 0 ? (
             <div className="py-12 text-center">
-              <Ticket className="text-surface-400 mx-auto mb-4 size-12" />
-              <h3 className="text-surface-900 mb-2 text-lg font-medium">
+              <Ticket className="mx-auto mb-4 size-12 text-gray-400" />
+              <h3 className="mb-2 text-lg font-medium text-gray-900">
                 {searchTerm ? "No tickets found" : "No tickets yet"}
               </h3>
-              <p className="text-surface-500 mb-6">
+              <p className="mb-6 text-gray-500">
                 {searchTerm
                   ? "Try adjusting your search terms or filters"
                   : "Create your first ticket to get started"}
@@ -198,7 +198,7 @@ export const TicketListPage = () => {
               {displayTickets.map((ticket) => (
                 <div
                   key={ticket._id}
-                  className={`rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
+                  className={`rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-green-100 bg-green-50 hover:bg-green-100" : ticket.status === "pending" ? " border-red-100 bg-red-50 hover:bg-red-100" : ticket.status === "open" ? "border-rose-100 bg-rose-50 hover:bg-rose-100" : ticket.status === "closed" ? "border-gray-100 bg-gray-50 hover:bg-gray-100" : "border-gray-100 bg-gray-50 hover:bg-gray-100"}`}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
@@ -206,15 +206,15 @@ export const TicketListPage = () => {
                         to={`/tickets/${ticket._id}`}
                         className="hover:text-primary-600 block transition-colors"
                       >
-                        <h3 className="text-surface-900 mb-2 font-semibold">
+                        <h3 className="mb-2 font-semibold text-gray-900">
                           {ticket.title}
                         </h3>
-                        <p className="text-surface-600 mb-3 line-clamp-2 text-sm">
+                        <p className="mb-3 line-clamp-2 text-sm text-gray-600">
                           {ticket.description}
                         </p>
                       </Link>
 
-                      <div className="text-surface-500 flex flex-wrap items-center gap-2 space-x-4 text-sm">
+                      <div className="flex flex-wrap items-center gap-2 space-x-4 text-sm text-gray-500">
                         <span>By {ticket.user?.name}</span>
                         {isAgentOrAdmin && ticket.assignedUser && (
                           <span>Assigned to {ticket.assignedUser.name}</span>

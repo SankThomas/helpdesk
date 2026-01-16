@@ -7,14 +7,14 @@ export const Select = forwardRef(function Select(
   return (
     <div className="space-y-1">
       {label && (
-        <label className="text-surface-700 block font-medium">{label}</label>
+        <label className="block font-medium text-gray-700">{label}</label>
       )}
 
       <select
         ref={ref}
-        className={`border-surface-300 text-surface-900 focus:border-primary-500 focus:ring-primary-500 disabled:bg-surface-50 disabled:text-surface-500 block w-full rounded-lg border bg-white px-3 py-2 transition-all duration-200 focus:ring-1 focus:outline-none disabled:cursor-not-allowed ${
+        className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 transition-all duration-200 focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 ${
           error
-            ? "border-error-300 focus:border-error-500 focus:ring-error-500"
+            ? "focus:ring-error-500 border-rose-300 focus:border-rose-500"
             : ""
         } ${className} `}
         {...props}
@@ -22,7 +22,7 @@ export const Select = forwardRef(function Select(
         {children}
       </select>
 
-      {error && <p className="text-error-600">{error}</p>}
+      {error && <p className="text-rose-600">{error}</p>}
     </div>
   );
 });

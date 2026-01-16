@@ -10,26 +10,26 @@ export const PriorityIndicator = ({ priority, size = "md" }) => {
   const priorityConfig = {
     low: {
       icon: ArrowDown,
-      color: "text-surface-600",
-      bgColor: "bg-surface-100",
+      color: "text-gray-600",
+      bgColor: "bg-gray-100",
       label: "Low",
     },
     medium: {
       icon: Minus,
-      color: "text-warning-600",
-      bgColor: "bg-warning-100",
+      color: "text-red-600",
+      bgColor: "bg-red-100",
       label: "Medium",
     },
     high: {
       icon: ArrowUp,
-      color: "text-error-600",
-      bgColor: "bg-error-100",
+      color: "text-rose-600",
+      bgColor: "bg-rose-100",
       label: "High",
     },
     urgent: {
       icon: AlertTriangle,
-      color: "text-error-700",
-      bgColor: "bg-error-200",
+      color: "text-rose-700",
+      bgColor: "bg-rose-200",
       label: "Urgent",
     },
   };

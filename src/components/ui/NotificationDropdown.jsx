@@ -98,8 +98,8 @@ export const NotificationDropdown = ({ user }) => {
         {unreadCount > 0 && (
           <div className="absolute -top-1 -right-1">
             <span className="flex size-5">
-              <span className="animate-pulse-ring bg-error-400 absolute inline-flex h-full w-full rounded-full opacity-75"></span>
-              <span className="bg-error-500 relative inline-flex size-5 items-center justify-center rounded-full text-xs font-medium text-white">
+              <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+              <span className="relative inline-flex size-5 items-center justify-center rounded-full bg-rose-500 text-xs font-medium text-white">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             </span>
@@ -108,10 +108,10 @@ export const NotificationDropdown = ({ user }) => {
       </Button>
 
       {isOpen && (
-        <div className="glass border-surface-200! animate-bounce-in absolute -right-40! z-50 mt-2 w-96 rounded-xl border bg-white! shadow-xl sm:right-0!">
-          <div className="border-surface-200 border-b p-4">
+        <div className="glass animate-bounce-in absolute -right-40! z-50 mt-2 w-96 rounded-xl border border-gray-200! bg-white! shadow-xl sm:right-0!">
+          <div className="border-b border-gray-200 p-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-surface-900 font-semibold">Notifications</h3>
+              <h3 className="font-semibold text-gray-900">Notifications</h3>
               <div className="flex items-center space-x-2">
                 {unreadCount > 0 && (
                   <Button
@@ -138,15 +138,15 @@ export const NotificationDropdown = ({ user }) => {
           <div className="max-h-96 overflow-y-auto">
             {!notifications || notifications.length === 0 ? (
               <div className="p-8 text-center">
-                <Bell className="text-surface-400 mx-auto mb-3 size-12" />
-                <p className="text-surface-500">No notifications</p>
+                <Bell className="mx-auto mb-3 size-12 text-gray-400" />
+                <p className="text-gray-500">No notifications</p>
               </div>
             ) : (
-              <div className="divide-surface-200 divide-y">
+              <div className="divide-y divide-gray-200">
                 {notifications.map((notification) => (
                   <div
                     key={notification._id}
-                    className={`hover:bg-surface-50 cursor-pointer p-4 transition-colors ${
+                    className={`cursor-pointer p-4 transition-colors hover:bg-gray-50 ${
                       !notification.read ? "bg-primary-50" : ""
                     }`}
                     onClick={() => handleNotificationClick(notification)}
@@ -156,7 +156,7 @@ export const NotificationDropdown = ({ user }) => {
                         className={`flex size-8 shrink-0 items-center justify-center rounded-full ${
                           !notification.read
                             ? "bg-primary-100 text-primary-600"
-                            : "bg-surface-100 text-surface-600"
+                            : "bg-gray-100 text-gray-600"
                         }`}
                       >
                         {getNotificationIcon(notification.type)}
@@ -168,17 +168,17 @@ export const NotificationDropdown = ({ user }) => {
                             <p
                               className={`font-medium ${
                                 !notification.read
-                                  ? "text-surface-900"
-                                  : "text-surface-700"
+                                  ? "text-gray-900"
+                                  : "text-gray-700"
                               }`}
                             >
                               {notification.title}
                             </p>
-                            <p className="text-surface-600 mt-1">
+                            <p className="mt-1 text-gray-600">
                               {notification.message}
                             </p>
                             <div className="mt-2 flex items-center space-x-2">
-                              <div className="text-surface-500 flex items-center space-x-1 text-xs">
+                              <div className="flex items-center space-x-1 text-xs text-gray-500">
                                 <Clock className="size-3" />
                                 <span>
                                   {formatTimeAgo(notification.createdAt)}

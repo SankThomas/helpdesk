@@ -45,17 +45,17 @@ export const Modal = ({ isOpen, onClose, title, children, size = "md" }) => {
       <div className="flex min-h-screen items-center justify-center p-4">
         {/* Backdrop */}
         <div
-          className="bg-surface-900/50 fixed inset-0 backdrop-blur-sm transition-opacity"
+          className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity"
           onClick={onClose}
         />
 
         {/* Modal */}
         <div
-          className={`glass border-surface-200 relative w-full rounded-xl border shadow-xl ${sizeClasses[size]} animate-bounce-in`}
+          className={`glass relative w-full rounded-xl border border-gray-200 shadow-xl ${sizeClasses[size]} animate-bounce-in`}
         >
           {/* Header */}
-          <div className="border-surface-200 flex items-center justify-between border-b p-6">
-            <h2 className="text-surface-900 text-lg font-semibold">{title}</h2>
+          <div className="flex items-center justify-between border-b border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="size-5" />
             </Button>

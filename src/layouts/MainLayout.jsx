@@ -8,7 +8,7 @@ export const MainLayout = ({ children }) => {
   const { currentUser } = useCurrentUser();
 
   return (
-    <div className="bg-surface-50 flex h-screen">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar
         isOpen={sidebarOpen}
         onToggle={() => setSidebarOpen(!sidebarOpen)}

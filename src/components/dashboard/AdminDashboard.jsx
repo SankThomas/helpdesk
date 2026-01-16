@@ -37,8 +37,8 @@ export const AdminDashboard = ({ user }) => {
     <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-surface-900 text-2xl font-bold">Admin Dashboard</h1>
-        <p className="text-surface-600">System overview and management</p>
+        <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+        <p className="text-gray-600">System overview and management</p>
       </div>
 
       {/* Stats Grid */}
@@ -48,10 +48,10 @@ export const AdminDashboard = ({ user }) => {
             <div className="flex items-center">
               <Ticket className="text-primary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Total Tickets
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.totalTickets}
                 </p>
               </div>
@@ -62,12 +62,12 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <AlertTriangle className="text-error-600 size-8" />
+              <AlertTriangle className="size-8 text-rose-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Open Tickets
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.openTickets}
                 </p>
               </div>
@@ -80,10 +80,10 @@ export const AdminDashboard = ({ user }) => {
             <div className="flex items-center">
               <Users className="text-secondary-600 size-8" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
+                <p className="text-sm font-medium text-gray-600">
                   Total Agents
                 </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.totalAgents}
                 </p>
               </div>
@@ -94,12 +94,10 @@ export const AdminDashboard = ({ user }) => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <TrendingUp className="text-warning-600 size-8" />
+              <TrendingUp className="size-8 text-red-600" />
               <div className="ml-4">
-                <p className="text-surface-600 text-sm font-medium">
-                  Unassigned
-                </p>
-                <p className="text-surface-900 text-2xl font-bold">
+                <p className="text-sm font-medium text-gray-600">Unassigned</p>
+                <p className="text-2xl font-bold text-gray-900">
                   {stats.unassignedTickets}
                 </p>
               </div>
@@ -113,7 +111,7 @@ export const AdminDashboard = ({ user }) => {
         <Card className="lg:col-span-2">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h3 className="text-surface-900 font-semibold">Recent Tickets</h3>
+              <h3 className="font-semibold text-gray-900">Recent Tickets</h3>
               <Link to="/tickets">
                 <Button variant="primary" size="sm">
                   View All Tickets
@@ -124,25 +122,25 @@ export const AdminDashboard = ({ user }) => {
           <CardContent>
             {recentTickets.length === 0 ? (
               <div className="py-8 text-center">
-                <Ticket className="text-surface-400 mx-auto mb-3 size-12" />
-                <p className="text-surface-500">No tickets yet</p>
+                <Ticket className="mx-auto mb-3 size-12 text-gray-400" />
+                <p className="text-gray-500">No tickets yet</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {recentTickets.slice(0, 4).map((ticket) => (
                   <div
                     key={ticket._id}
-                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-success-100 bg-success-50 hover:bg-success-100" : ticket.status === "pending" ? " border-warning-100 bg-warning-50 hover:bg-warning-100" : ticket.status === "open" ? "border-error-100 bg-error-50 hover:bg-error-100" : ticket.status === "closed" ? "border-surface-100 bg-surface-50 hover:bg-surface-100" : "border-surface-100 bg-surface-50 hover:bg-surface-100"}`}
+                    className={`gap-2 rounded-lg border p-2 transition-colors ${ticket.status === "resolved" ? "border-green-100 bg-green-50 hover:bg-green-100" : ticket.status === "pending" ? " border-red-100 bg-red-50 hover:bg-red-100" : ticket.status === "open" ? "border-rose-100 bg-rose-50 hover:bg-rose-100" : ticket.status === "closed" ? "border-gray-100 bg-gray-50 hover:bg-gray-100" : "border-gray-100 bg-gray-50 hover:bg-gray-100"}`}
                   >
                     <div>
                       <Link to={`/tickets/${ticket._id}`} className="block">
-                        <h4 className="text-surface-900 text-sm font-medium">
+                        <h4 className="text-sm font-medium text-gray-900">
                           {ticket.title}
                         </h4>
-                        <p className="text-surface-500 mb-2 line-clamp-2">
+                        <p className="mb-2 line-clamp-2 text-gray-500">
                           {ticket.description}
                         </p>
-                        <p className="text-surface-500 text-xs">
+                        <p className="text-xs text-gray-500">
                           By {ticket.user?.name} •{" "}
                           {ticket.assignedUser
                             ? `Assigned to ${ticket.assignedUser.name}`
@@ -163,16 +161,16 @@ export const AdminDashboard = ({ user }) => {
         <div>
           <Card className="mb-4">
             <CardContent className="p-6">
-              <h3 className="text-surface-900 mb-4 font-semibold">
+              <h3 className="mb-4 font-semibold text-gray-900">
                 Ticket Status Breakdown
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-surface-600 text-sm">Open</span>
+                  <span className="text-sm text-gray-600">Open</span>
                   <div className="flex items-center space-x-2">
-                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                    <div className="h-2 w-24 rounded-full bg-gray-200">
                       <div
-                        className="bg-error-500 h-2 rounded-full"
+                        className="h-2 rounded-full bg-rose-500"
                         style={{
                           width: `${
                             stats.totalTickets > 0
@@ -182,17 +180,17 @@ export const AdminDashboard = ({ user }) => {
                         }}
                       />
                     </div>
-                    <span className="text-surface-900 text-sm font-medium">
+                    <span className="text-sm font-medium text-gray-900">
                       {stats.openTickets}
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-surface-600 text-sm">Pending</span>
+                  <span className="text-sm text-gray-600">Pending</span>
                   <div className="flex items-center space-x-2">
-                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                    <div className="h-2 w-24 rounded-full bg-gray-200">
                       <div
-                        className="bg-warning-500 h-2 rounded-full"
+                        className="h-2 rounded-full bg-red-500"
                         style={{
                           width: `${
                             stats.totalTickets > 0
@@ -203,17 +201,17 @@ export const AdminDashboard = ({ user }) => {
                         }}
                       />
                     </div>
-                    <span className="text-surface-900 text-sm font-medium">
+                    <span className="text-sm font-medium text-gray-900">
                       {stats.pendingTickets}
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-surface-600 text-sm">Resolved</span>
+                  <span className="text-sm text-gray-600">Resolved</span>
                   <div className="flex items-center space-x-2">
-                    <div className="bg-surface-200 h-2 w-24 rounded-full">
+                    <div className="h-2 w-24 rounded-full bg-gray-200">
                       <div
-                        className="bg-success-500 h-2 rounded-full"
+                        className="h-2 rounded-full bg-green-500"
                         style={{
                           width: `${
                             stats.totalTickets > 0
@@ -224,7 +222,7 @@ export const AdminDashboard = ({ user }) => {
                         }}
                       />
                     </div>
-                    <span className="text-surface-900 text-sm font-medium">
+                    <span className="text-sm font-medium text-gray-900">
                       {stats.resolvedTickets}
                     </span>
                   </div>
@@ -236,7 +234,7 @@ export const AdminDashboard = ({ user }) => {
           {/* Quick Actions */}
           <Card>
             <CardHeader>
-              <h3 className="text-surface-900 font-semibold">Quick Actions</h3>
+              <h3 className="font-semibold text-gray-900">Quick Actions</h3>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-2">

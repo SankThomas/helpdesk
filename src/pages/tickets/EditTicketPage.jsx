@@ -117,18 +117,18 @@ export const EditTicketPage = () => {
         <img
           src={fileUrl}
           alt={fileName}
-          className="border-surface-200 size-12 rounded border object-cover"
+          className="size-12 rounded border border-gray-200 object-cover"
         />
       );
     }
 
     // For documents
     if (["pdf", "doc", "docx", "txt"].includes(extension)) {
-      return <FileText className="text-error-600 size-4" />;
+      return <FileText className="size-4 text-rose-600" />;
     }
 
     // Fallback for unknown types
-    return <File className="text-surface-600 size-4" />;
+    return <File className="size-4 text-gray-600" />;
   };
 
   const formatFileSize = (bytes) => {
@@ -158,13 +158,13 @@ export const EditTicketPage = () => {
         </div>
 
         <div>
-          <h1 className="text-surface-900 text-2xl font-bold">Edit Ticket</h1>
-          <p className="text-surface-600">Update your support request</p>
+          <h1 className="text-2xl font-bold text-gray-900">Edit Ticket</h1>
+          <p className="text-gray-600">Update your support request</p>
         </div>
 
         <Card>
           <CardHeader>
-            <h2 className="text-surface-900 text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-gray-900">
               Ticket Details
             </h2>
           </CardHeader>
@@ -198,18 +198,18 @@ export const EditTicketPage = () => {
 
               {existingAttachments && existingAttachments.length > 0 && (
                 <div className="mt-4 space-y-2">
-                  <h3 className="text-surface-900 flex items-center space-x-2 font-semibold">
+                  <h3 className="flex items-center space-x-2 font-semibold text-gray-900">
                     <Paperclip className="mr-2 size-4" /> Existing Attachments
                   </h3>
                   {existingAttachments.map((att) => (
                     <div
                       key={att._id}
-                      className="border-surface-200 flex items-center justify-between rounded-lg border p-3"
+                      className="flex items-center justify-between rounded-lg border border-gray-200 p-3"
                     >
                       <div className="flex min-w-0 flex-1 items-center space-x-2">
                         {getFileIcon(att)}
                         <span className="truncate">{att.fileName}</span>
-                        <span className="text-surface-500 ml-2 text-sm">
+                        <span className="ml-2 text-sm text-gray-500">
                           {formatFileSize(att.fileSize)}
                         </span>
                       </div>
@@ -232,7 +232,7 @@ export const EditTicketPage = () => {
                                 setAttachmentToDelete(att);
                                 setIsDeleteModalOpen(true);
                               }}
-                              className="text-error-600 hover:text-error-700"
+                              className="text-rose-600 hover:text-rose-700"
                             >
                               <Trash2 className="size-4" />
                             </Button>
@@ -246,7 +246,7 @@ export const EditTicketPage = () => {
 
               {/* Upload New Attachments */}
               <div className="mt-4">
-                <label className="text-surface-700 mb-2 block font-medium">
+                <label className="mb-2 block font-medium text-gray-700">
                   Add Attachments (Optional)
                 </label>
                 <FileUpload

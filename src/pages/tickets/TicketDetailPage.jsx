@@ -139,10 +139,10 @@ export const TicketDetailPage = () => {
             <CardHeader>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="">
-                  <h1 className="text-surface-900 mb-2 text-2xl font-bold">
+                  <h1 className="mb-2 text-2xl font-bold text-gray-900">
                     {ticket.title}
                   </h1>
-                  <div className="text-surface-500 flex flex-wrap items-center gap-2 space-x-4 text-sm">
+                  <div className="flex flex-wrap items-center gap-2 space-x-4 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="size-4" />
                       <span>Created by {ticket.user?.name}</span>
@@ -178,7 +178,7 @@ export const TicketDetailPage = () => {
               <AttachmentSection ticketId={ticket._id} />
 
               <div className="prose mt-4 max-w-none">
-                <p className="text-surface-700 whitespace-pre-wrap">
+                <p className="whitespace-pre-wrap text-gray-700">
                   {ticket.description}
                 </p>
               </div>
@@ -195,7 +195,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="text-surface-900 font-semibold">Status</h3>
+                <h3 className="font-semibold text-gray-900">Status</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -216,7 +216,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="text-surface-900 font-semibold">Assignment</h3>
+                <h3 className="font-semibold text-gray-900">Assignment</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -232,10 +232,10 @@ export const TicketDetailPage = () => {
                   ))}
                 </Select>
                 {ticket.assignedUser && (
-                  <div className="bg-surface-50 mt-3 rounded-lg p-3!">
+                  <div className="mt-3 rounded-lg bg-gray-50 p-3!">
                     <div className="flex items-center space-x-2">
-                      <User className="text-surface-600 size-4" />
-                      <span className="text-surface-900 text-sm font-medium">
+                      <User className="size-4 text-gray-600" />
+                      <span className="text-sm font-medium text-gray-900">
                         {ticket.assignedUser.name}
                       </span>
                     </div>
@@ -249,7 +249,7 @@ export const TicketDetailPage = () => {
           {canEdit && (
             <Card>
               <CardHeader>
-                <h3 className="text-surface-900 font-semibold">Priority</h3>
+                <h3 className="font-semibold text-gray-900">Priority</h3>
               </CardHeader>
               <CardContent>
                 <Select
@@ -269,33 +269,33 @@ export const TicketDetailPage = () => {
           {/* Ticket Info */}
           <Card>
             <CardHeader>
-              <h3 className="text-surface-900 font-semibold">
+              <h3 className="font-semibold text-gray-900">
                 Ticket Information
               </h3>
             </CardHeader>
             <CardContent>
               <div className="space-y-3 text-sm">
                 <div>
-                  <span className="text-surface-600">Ticket ID:</span>
-                  <span className="text-surface-900 ml-2 font-mono font-bold uppercase">
+                  <span className="text-gray-600">Ticket ID:</span>
+                  <span className="ml-2 font-mono font-bold text-gray-900 uppercase">
                     {ticket._id.slice(-8)}
                   </span>
                 </div>
                 <div>
-                  <span className="text-surface-600">Created:</span>
-                  <span className="text-surface-900 ml-2">
+                  <span className="text-gray-600">Created:</span>
+                  <span className="ml-2 text-gray-900">
                     {format(new Date(ticket.createdAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>
-                  <span className="text-surface-600">Last Updated:</span>
-                  <span className="text-surface-900 ml-2">
+                  <span className="text-gray-600">Last Updated:</span>
+                  <span className="ml-2 text-gray-900">
                     {format(new Date(ticket.updatedAt), "PPPPpppp")}
                   </span>
                 </div>
                 <div>
-                  <span className="text-surface-600">Reported By:</span>
-                  <span className="text-surface-900 ml-2">
+                  <span className="text-gray-600">Reported By:</span>
+                  <span className="ml-2 text-gray-900">
                     {ticket.user?.name}
                   </span>
                 </div>

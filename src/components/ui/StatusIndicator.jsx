@@ -10,26 +10,26 @@ export const StatusIndicator = ({ status, size = "md" }) => {
   const statusConfig = {
     open: {
       icon: AlertTriangle,
-      color: "text-error-600",
-      bgColor: "bg-error-100",
+      color: "text-rose-600",
+      bgColor: "bg-rose-100",
       label: "Open",
     },
     pending: {
       icon: Clock,
-      color: "text-warning-600",
-      bgColor: "bg-warning-100",
+      color: "text-red-600",
+      bgColor: "bg-red-100",
       label: "Pending",
     },
     resolved: {
       icon: CheckCircle,
-      color: "text-success-600",
-      bgColor: "bg-success-100",
+      color: "text-green-600",
+      bgColor: "bg-green-100",
       label: "Resolved",
     },
     closed: {
       icon: XCircle,
-      color: "text-surface-600",
-      bgColor: "bg-surface-100",
+      color: "text-gray-600",
+      bgColor: "bg-gray-100",
       label: "Closed",
     },
   };

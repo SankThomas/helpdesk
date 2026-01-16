@@ -6,10 +6,10 @@ const variants = {
   secondary:
     "bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-sm hover:shadow-md",
   outline:
-    "border border-surface-300 bg-white text-surface-700 hover:bg-surface-50 focus:ring-primary-500",
-  ghost: "text-surface-700 hover:bg-surface-100 hover:text-surface-900",
+    "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-primary-500",
+  ghost: "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
   danger:
-    "bg-error-600 text-white hover:bg-error-700 focus:ring-error-500 shadow-sm hover:shadow-md",
+    "bg-rose-600 text-white hover:bg-rose-700 focus:ring-error-500 shadow-sm hover:shadow-md",
 };
 
 const sizes = {

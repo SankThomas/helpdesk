@@ -108,16 +108,14 @@ export const CreateTicketPage = () => {
       </div>
 
       <div>
-        <h1 className="text-surface-900 text-2xl font-bold">
-          Create New Ticket
-        </h1>
-        <p className="text-surface-600">Submit a new support request</p>
+        <h1 className="text-2xl font-bold text-gray-900">Create New Ticket</h1>
+        <p className="text-gray-600">Submit a new support request</p>
       </div>
 
       {/* Form */}
       <Card>
         <CardHeader>
-          <h2 className="text-surface-900 text-lg font-semibold">
+          <h2 className="text-lg font-semibold text-gray-900">
             Ticket Details
           </h2>
         </CardHeader>
@@ -160,7 +158,7 @@ export const CreateTicketPage = () => {
             </Select>
 
             <div>
-              <label className="text-surface-700 mb-2 block font-medium">
+              <label className="mb-2 block font-medium text-gray-700">
                 Attachments (Optional)
               </label>
               <FileUpload

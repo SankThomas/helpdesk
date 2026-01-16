@@ -37,8 +37,8 @@ export const AuthLayout = ({ children, title, subtitle }) => {
       <div className="flex flex-1 items-center justify-center p-8">
         <div className="w-full max-w-md">
           <div className="mb-8">
-            <h2 className="text-surface-900 text-2xl font-bold">{title}</h2>
-            {subtitle && <p className="text-surface-600 mt-2">{subtitle}</p>}
+            <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+            {subtitle && <p className="mt-2 text-gray-600">{subtitle}</p>}
           </div>
           {children}
         </div>

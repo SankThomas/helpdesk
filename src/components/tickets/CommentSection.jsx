@@ -65,8 +65,8 @@ export const CommentSection = ({ ticketId, currentUser }) => {
     <Card>
       <CardHeader>
         <div className="flex items-center space-x-2">
-          <MessageCircle className="text-surface-600 size-5" />
-          <h3 className="text-surface-900 font-semibold">Comments</h3>
+          <MessageCircle className="size-5 text-gray-600" />
+          <h3 className="font-semibold text-gray-900">Comments</h3>
           {comments && (
             <Badge variant="secondary" size="sm">
               {comments.length}
@@ -83,8 +83,8 @@ export const CommentSection = ({ ticketId, currentUser }) => {
             </div>
           ) : comments.length === 0 ? (
             <div className="py-8 text-center">
-              <MessageCircle className="text-surface-400 mx-auto mb-3 size-12" />
-              <p className="text-surface-500">No comments yet</p>
+              <MessageCircle className="mx-auto mb-3 size-12 text-gray-400" />
+              <p className="text-gray-500">No comments yet</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -93,15 +93,15 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                   key={comment._id}
                   className={`group rounded-lg border p-4 ${
                     comment.isInternal
-                      ? "bg-warning-50 border-warning-200"
-                      : "bg-surface-50 border-surface-200"
+                      ? "border-red-200 bg-red-50"
+                      : "border-gray-200 bg-gray-50"
                   }`}
                 >
                   <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
                     <div className="flex flex-wrap items-center gap-2">
                       <div className="flex items-center space-x-1">
-                        <User className="text-surface-500 size-4" />
-                        <span className="text-surface-900 font-medium">
+                        <User className="size-4 text-gray-500" />
+                        <span className="font-medium text-gray-900">
                           {comment.user?.name}
                         </span>
                       </div>
@@ -140,7 +140,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                         </Button>
                       )}
                     </div>
-                    <div className="text-surface-500 flex items-center space-x-1 text-sm">
+                    <div className="flex items-center space-x-1 text-sm text-gray-500">
                       <Clock className="size-3" />
                       <span>{format(new Date(comment.createdAt), "PPp")}</span>
                     </div>
@@ -150,7 +150,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                     dangerouslySetInnerHTML={{
                       __html:
                         comment.content ||
-                        '<p class="text-surface-500">No comment</p>',
+                        '<p class="text-gray-500">No comment</p>',
                     }}
                   />
                 </div>
@@ -159,7 +159,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
           )}
 
           {/* Add Comment Form */}
-          <div className="border-surface-200 border-t pt-6">
+          <div className="border-t border-gray-200 pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* <Textarea
                 placeholder="Add a comment..."
@@ -170,7 +170,7 @@ export const CommentSection = ({ ticketId, currentUser }) => {
               /> */}
 
               <div>
-                <p className="text-surface-800 mb-2 text-lg font-bold">
+                <p className="mb-2 text-lg font-bold text-gray-800">
                   Add a comment
                 </p>
                 <TipTapEditor
@@ -189,18 +189,18 @@ export const CommentSection = ({ ticketId, currentUser }) => {
                         type="checkbox"
                         checked={isInternal}
                         onChange={(e) => setIsInternal(e.target.checked)}
-                        className="text-primary-600 border-surface-300 focus:ring-primary-500 size-4 rounded focus:ring-2"
+                        className="text-primary-600 focus:ring-primary-500 size-4 rounded border-gray-300 focus:ring-2"
                       />
                       <div className="flex items-center space-x-1">
-                        <Lock className="text-surface-500 size-4" />
-                        <span className="text-surface-700 text-sm">
+                        <Lock className="size-4 text-gray-500" />
+                        <span className="text-sm text-gray-700">
                           Internal comment
                         </span>
                       </div>
                     </label>
                   )}
                   {isInternal && (
-                    <p className="text-warning-600 text-xs">
+                    <p className="text-xs text-red-600">
                       Only visible to agents and admins
                     </p>
                   )}
