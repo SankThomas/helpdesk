@@ -19,6 +19,7 @@ import {
 import { Modal } from "../../components/ui/Modal";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { toast } from "sonner";
 
 export const EditTicketPage = () => {
   const { ticketId } = useParams();
@@ -100,8 +101,12 @@ export const EditTicketPage = () => {
       }
 
       navigate(`/tickets/${ticketId}`);
+      toast.success("Ticket updated");
     } catch (error) {
       console.error("Error updating ticket:", error);
+      toast.error(
+        "An error occurred while updating the ticket. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -304,8 +309,12 @@ export const EditTicketPage = () => {
                 await deleteAttachment({
                   attachmentId: attachmentToDelete._id,
                 });
+                toast.success("Attachment deleted");
               } catch (err) {
                 console.error("Error deleting attachment:", err);
+                toast.error(
+                  "An error occurred while deleting the attachment. Please try again.",
+                );
               } finally {
                 setIsDeleteModalOpen(false);
                 setAttachmentToDelete(null);

@@ -49,8 +49,10 @@ export const CommentSection = ({ ticketId, currentUser }) => {
 
       setComment("");
       setIsInternal(false);
+      toast.success("Comment added");
     } catch (error) {
       console.error("Error adding comment:", error);
+      toast.error("Error adding comment");
     } finally {
       setIsSubmitting(false);
     }

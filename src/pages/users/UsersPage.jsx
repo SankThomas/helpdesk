@@ -9,6 +9,7 @@ import { Badge } from "../../components/ui/Badge";
 import { Modal } from "../../components/ui/Modal";
 import { Users, Search, UserCheck, UserX, Shield, Plus } from "lucide-react";
 import { format } from "date-fns";
+import { toast } from "sonner";
 
 const roleColors = {
   user: "default",
@@ -33,8 +34,10 @@ export const UsersPage = () => {
   const handleRoleChange = async (userId, newRole) => {
     try {
       await updateUserRole({ userId, role: newRole });
+      toast.success("User role updated");
     } catch (error) {
       console.error("Error updating user role:", error);
+      toast.error("Failed to update user role. Please try again.");
     }
   };
 
@@ -69,8 +72,10 @@ export const UsersPage = () => {
         email: "",
         role: "user",
       });
+      toast.success("Invite email has been sent.");
     } catch (error) {
       console.error("Invite not sent: ", error);
+      toast.error("Failed to send invite. Please try again.");
     } finally {
       setLoading(false);
     }

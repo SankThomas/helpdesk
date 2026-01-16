@@ -11,6 +11,7 @@ import { FileUpload } from "../../components/ui/FileUpload";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { ArrowLeft } from "lucide-react";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { toast } from "sonner";
 
 export const CreateTicketPage = () => {
   const navigate = useNavigate();
@@ -79,9 +80,11 @@ export const CreateTicketPage = () => {
         });
       }
 
+      toast.success("Ticket created");
       navigate(`/tickets/${ticketId}`);
     } catch (error) {
       console.error("Error creating ticket:", error);
+      toast.error("Failed to create ticket");
     } finally {
       setIsSubmitting(false);
     }
