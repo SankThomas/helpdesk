@@ -3,3 +3,4 @@
 5. Add toast notifications
 6. Add alert modals before deleting a ticket
 7. Custom range not working on reports page
+8. Add a command menu in place of ticket assignments
