@@ -41,7 +41,7 @@ export const getAttachmentByTicket = query({
           ...attachment,
           user,
         };
-      })
+      }),
     );
 
     return attachmentWithUsers.sort((a, b) => b.createdAt - a.createdAt);
@@ -49,8 +49,25 @@ export const getAttachmentByTicket = query({
 });
 
 export const deleteAttachment = mutation({
-  args: { attachmentId: v.id("attachments") },
-  handler: async (ctx, { attachmentId }) => {
+  args: { attachmentId: v.id("attachments"), userId: v.id("users") },
+  handler: async (ctx, { attachmentId, userId }) => {
+    const user = await ctx.db.get(userId);
+    if (!user) throw new Error("User not found");
+
+    const attachment = await ctx.db.get(attachmentId);
+    if (!attachment) throw new Error("Attachment not found");
+
+    const ticket = await ctx.db.get(attachment.ticketId);
+    if (!ticket) throw new Error("Ticket not found");
+
+    const isOwner = attachment.uploadedBy === user._id;
+    const isAgentAssigned =
+      user.role === "agent" && ticket.assignedTo === user._id;
+    const isAdmin = user.role === "admin";
+
+    if (!isOwner && !isAgentAssigned && !isAdmin)
+      throw new Error("You cannot delete this attachment");
+
     await ctx.db.delete(attachmentId);
   },
 });
