@@ -13,6 +13,8 @@ import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { Trash } from "lucide-react";
 import { format } from "date-fns";
+import { toast } from "sonner";
+import { Modal } from "../../components/ui/Modal";
 
 const statusColors = {
   open: "error",
@@ -33,6 +35,8 @@ export const TicketDetailPage = () => {
   const navigate = useNavigate();
 
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [attachmentToDelete, setAttachmentToDelete] = useState(null);
 
   const { currentUser } = useCurrentUser();
   const ticket = useQuery(
@@ -44,6 +48,37 @@ export const TicketDetailPage = () => {
   const agents = useQuery(api.users.getAllAgents);
   const updateTicket = useMutation(api.tickets.updateTicket);
   const deleteTicket = useMutation(api.tickets.deleteTicket);
+  const deleteAttachment = useMutation(api.attachments.deleteAttachment);
+
+  const handleDeleteAttachment = async (attachment) => {
+    if (!currentUser || !ticket) return;
+
+    const isOwner = attachment.uploadedBy === currentUser._id;
+    const isAgentAssigned =
+      currentUser.role === "agent" && ticket.assignedTo === currentUser._id;
+    const isAdmin = currentUser.role === "admin";
+
+    if (!isOwner && !isAgentAssigned && !isAdmin) {
+      toast.error("You cannot delete this attachment");
+      return;
+    }
+
+    try {
+      await deleteAttachment({
+        attachmentId: attachment._id,
+        userId: currentUser._id,
+      });
+      toast.success("Attachment deleted");
+    } catch (error) {
+      console.error(error.message);
+      toast.error("Failed to delete attachment");
+    }
+  };
+
+  const handleDeleteRequest = (attachment) => {
+    setAttachmentToDelete(attachment);
+    setIsDeleteModalOpen(true);
+  };
 
   const handleStatusChange = async (newStatus) => {
     if (!ticket || isUpdating) return;
@@ -55,8 +90,12 @@ export const TicketDetailPage = () => {
         status: newStatus,
         updatedBy: currentUser._id,
       });
+      toast.success("Ticket status updated");
     } catch (error) {
       console.error("Error updating ticket status:", error);
+      toast.error(
+        "An error occured while updating ticket status. Please try again.",
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -72,8 +111,12 @@ export const TicketDetailPage = () => {
         assignedTo: agentId || undefined,
         updatedBy: currentUser._id,
       });
+      toast.success("Ticket assignment updated");
     } catch (error) {
       console.error("Error updating ticket assignment:", error);
+      toast.error(
+        "An error occurred while updating the ticket assignment. Please try again.",
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -89,8 +132,12 @@ export const TicketDetailPage = () => {
         priority: newPriority,
         updatedBy: currentUser._id,
       });
+      toast.success("Ticket priority updated");
     } catch (error) {
       console.error("Error updating ticket priority:", error);
+      toast.error(
+        "An error occurred while updating ticket priority. Please try again",
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -101,10 +148,12 @@ export const TicketDetailPage = () => {
       await deleteTicket({
         ticketId: ticket._id,
       });
+      toast.success("Ticket deleted");
 
       navigate("/tickets");
     } catch (error) {
       console.error("Error deleting ticket:", error);
+      toast.error("Failed to delete ticket. Please try again.");
     }
   };
 
@@ -175,7 +224,11 @@ export const TicketDetailPage = () => {
             </CardHeader>
             <CardContent>
               {/* Attachments */}
-              <AttachmentSection ticketId={ticket._id} />
+              <AttachmentSection
+                ticketId={ticket._id}
+                ticketAssignedTo={ticket.assignedTo}
+                onDelete={handleDeleteRequest}
+              />
 
               <div className="prose mt-4 max-w-none">
                 <p className="whitespace-pre-wrap text-gray-700">
@@ -317,6 +370,51 @@ export const TicketDetailPage = () => {
           )}
         </div>
       </div>
+
+      {isDeleteModalOpen && (
+        <Modal
+          isOpen={isDeleteModalOpen}
+          onClose={() => {
+            setIsDeleteModalOpen(false);
+            setAttachmentToDelete(null);
+          }}
+          title="Delete Attachment"
+          size="xl"
+        >
+          <p className="text-lg text-gray-700">
+            Are you sure you want to delete{" "}
+            <strong>{attachmentToDelete?.fileName}</strong>?
+          </p>
+
+          <div className="mt-6 flex justify-end space-x-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsDeleteModalOpen(false);
+                setAttachmentToDelete(null);
+              }}
+            >
+              Cancel
+            </Button>
+
+            <Button
+              variant="destructive"
+              onClick={async () => {
+                if (!attachmentToDelete) return;
+
+                try {
+                  await handleDeleteAttachment(attachmentToDelete);
+                } finally {
+                  setIsDeleteModalOpen(false);
+                  setAttachmentToDelete(null);
+                }
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
